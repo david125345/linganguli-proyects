@@ -1,0 +1,128 @@
+CREATE DATABASE IF NOT EXISTS Formula1;
+USE Formula1;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS TIEMPO_VUELTAS;
+DROP TABLE IF EXISTS SUMINISTRA;
+DROP TABLE IF EXISTS RESULTADO;
+DROP TABLE IF EXISTS TIENE;
+DROP TABLE IF EXISTS PILOTO;
+DROP TABLE IF EXISTS AUTO;
+DROP TABLE IF EXISTS GRANDPRIX;
+DROP TABLE IF EXISTS CIRCUITO;
+DROP TABLE IF EXISTS ESCUDERIA;
+DROP TABLE IF EXISTS TEMPORADA;
+DROP TABLE IF EXISTS PROV_INDUMENTARIA;
+DROP TABLE IF EXISTS PROV_MOTORES;
+DROP TABLE IF EXISTS PROVEEDORES;
+
+CREATE TABLE TEMPORADA (
+    ID_temporada INT AUTO_INCREMENT,
+    año_temporada INT NOT NULL,
+    PRIMARY KEY (ID_temporada)
+);
+
+CREATE TABLE CIRCUITO (
+    ID_circuito INT AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    pais VARCHAR(50) NOT NULL,
+    longitud DECIMAL(6, 3) NOT NULL,
+    nro_vueltas INT NOT NULL,
+    PRIMARY KEY (ID_circuito)
+);
+
+CREATE TABLE GRANDPRIX (
+    ID_gp INT AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    Fecha DATE NOT NULL,
+    ID_temporada INT NOT NULL,
+    PRIMARY KEY (ID_gp),
+    FOREIGN KEY (ID_temporada) REFERENCES TEMPORADA (ID_temporada)
+);
+
+CREATE TABLE ESCUDERIA (
+    ID_escuderia INT AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    PRIMARY KEY (ID_escuderia)
+);
+
+CREATE TABLE AUTO (
+    ID_auto INT AUTO_INCREMENT,
+    Modelo VARCHAR(50) NOT NULL,
+    año_fabricacion INT NOT NULL,
+    ID_escuderia INT NOT NULL,
+    PRIMARY KEY (ID_auto),
+    FOREIGN KEY (ID_escuderia) REFERENCES ESCUDERIA (ID_escuderia)
+);
+
+CREATE TABLE PROVEEDORES (
+    ID_proveedores INT AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    PRIMARY KEY (ID_proveedores)
+);
+
+CREATE TABLE PROV_MOTORES (
+    ID_proveedores INT,
+    nombre VARCHAR(100) NOT NULL,
+    PRIMARY KEY (ID_proveedores),
+    FOREIGN KEY (ID_proveedores) REFERENCES PROVEEDORES (ID_proveedores)
+);
+
+CREATE TABLE PROV_INDUMENTARIA (
+    ID_proveedor INT,
+    nombre VARCHAR(100) NOT NULL,
+    PRIMARY KEY (ID_proveedor),
+    FOREIGN KEY (ID_proveedor) REFERENCES PROVEEDORES (ID_proveedores)
+);
+
+CREATE TABLE PILOTO (
+    ID_piloto INT AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    nacionalidad VARCHAR(50) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    ID_proveedor_indumentaria INT,
+    PRIMARY KEY (ID_piloto),
+    FOREIGN KEY (ID_proveedor_indumentaria) REFERENCES PROV_INDUMENTARIA (ID_proveedor)
+);
+
+CREATE TABLE TIENE (
+    ID_piloto INT NOT NULL,
+    ID_temporada INT NOT NULL,
+    nro_competidor INT NOT NULL,
+    PRIMARY KEY (ID_piloto, ID_temporada),
+    FOREIGN KEY (ID_piloto) REFERENCES PILOTO (ID_piloto),
+    FOREIGN KEY (ID_temporada) REFERENCES TEMPORADA (ID_temporada)
+);
+
+CREATE TABLE RESULTADO (
+    ID_piloto INT NOT NULL,
+    ID_auto INT NOT NULL,
+    ID_gp INT NOT NULL,
+    posición INT NOT NULL,
+    cant_vueltas INT NOT NULL,
+    puntos DECIMAL(5, 2) NOT NULL DEFAULT 0.00,
+    PRIMARY KEY (ID_piloto, ID_auto, ID_gp),
+    FOREIGN KEY (ID_piloto) REFERENCES PILOTO (ID_piloto),
+    FOREIGN KEY (ID_auto) REFERENCES AUTO (ID_auto),
+    FOREIGN KEY (ID_gp) REFERENCES GRANDPRIX (ID_gp)
+);
+
+CREATE TABLE TIEMPO_VUELTAS (
+    resultado INT AUTO_INCREMENT,
+    tiempo TIME(3) NOT NULL,
+    id_piloto INT NOT NULL,
+    PRIMARY KEY (resultado),
+    FOREIGN KEY (id_piloto) REFERENCES PILOTO (ID_piloto)
+);
+
+CREATE TABLE SUMINISTRA (
+    ID_proveedor INT NOT NULL,
+    ID_escuderia INT NOT NULL,
+    nro_chasis VARCHAR(50) NOT NULL,
+    PRIMARY KEY (ID_proveedor, ID_escuderia),
+    FOREIGN KEY (ID_proveedor) REFERENCES PROVEEDORES (ID_proveedores),
+    FOREIGN KEY (ID_escuderia) REFERENCES ESCUDERIA (ID_escuderia)
+);
+
+SET FOREIGN_KEY_CHECKS = 1;
