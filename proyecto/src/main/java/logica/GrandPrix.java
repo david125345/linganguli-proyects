@@ -2,17 +2,22 @@ package logica;
 
 import java.util.Date;
 
+/**
+ * @author Gabriel Correa
+ */
 public class GrandPrix {
     private int id;
     private String nombre;
     private Date fecha;
     private Circuito circuito;
+    private Resultados resultados;
 
     public GrandPrix(int id, Date fecha, String nombre, Circuito circuito) {
         this.id = id;
         this.fecha = fecha;
         this.nombre = nombre;
         this.circuito = circuito;
+        this.resultados = new Resultados();
     }
 
     public int getId() {
@@ -45,6 +50,14 @@ public class GrandPrix {
 
     public void setCircuito(Circuito circuito) {
         this.circuito = circuito;
+    }
+
+    public Resultados getResultados() {
+        return resultados;
+    }
+
+    public void setResultados(Resultados resultados) {
+        this.resultados = resultados;
     }
 
 }

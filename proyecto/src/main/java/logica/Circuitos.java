@@ -2,19 +2,14 @@ package logica;
 
 import java.util.ArrayList;
 
+/**
+ * @author Gabriel Correa
+ */
 public class Circuitos {
-    private ArrayList<Circuito> circuitos;
-    private static Circuitos instancia;
+    private final ArrayList<Circuito> circuitos;
 
-    private Circuitos() {
+    public Circuitos() {
         circuitos = new ArrayList<>();
-    }
-
-    public static Circuitos getInstance() {
-        if (instancia == null) {
-            instancia = new Circuitos();
-        }
-        return instancia;
     }
 
     public Circuito getCircuito(int id) {
@@ -32,7 +27,10 @@ public class Circuitos {
         }
     }
 
-    public void removeCircuito(Circuito circuito) {
-        circuitos.remove(circuito);
+    public void removeCircuito(int id) {
+        Circuito circuitoToRemove = getCircuito(id);
+        if (circuitoToRemove != null) {
+            circuitos.remove(circuitoToRemove);
+        }
     }
 }

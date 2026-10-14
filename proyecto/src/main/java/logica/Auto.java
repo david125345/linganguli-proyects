@@ -2,6 +2,9 @@ package logica;
 
 import java.util.Date;
 
+/**
+ * @author Gabriel Correa
+ */
 public class Auto {
     private int id;
     private String modelo;

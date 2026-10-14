@@ -1,5 +1,8 @@
 package logica;
 
+/**
+ * @author Gabriel Correa
+ */
 public class Escuderia {
     private int id;
     private String nombre;

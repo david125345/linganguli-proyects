@@ -2,19 +2,15 @@ package logica;
 
 import java.util.ArrayList;
 
+/**
+ * @author Gabriel Correa
+ */
+
 public class Pilotos {
-    private ArrayList<Piloto> pilotos;
-    private static Pilotos instancia;
+    private final ArrayList<Piloto> pilotos;
 
-    private Pilotos() {
+    public Pilotos() {
         pilotos = new ArrayList<>();
-    }
-
-    public static Pilotos getInstance() {
-        if (instancia == null) {
-            instancia = new Pilotos();
-        }
-        return instancia;
     }
 
     public Piloto getPiloto(int id) {
@@ -32,7 +28,10 @@ public class Pilotos {
         }
     }
 
-    public void removePiloto(Piloto piloto) {
-        pilotos.remove(piloto);
+    public void removePiloto(int id) {
+        Piloto pilotoToRemove = getPiloto(id);
+        if (pilotoToRemove != null) {
+            pilotos.remove(pilotoToRemove);
+        }
     }
 }

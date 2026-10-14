@@ -1,5 +1,8 @@
 package logica;
 
+/**
+ * @author Gabriel Correa
+ */
 public class Temporada {
     private int anoTemporada;
     private GrandPrix grandPrix;

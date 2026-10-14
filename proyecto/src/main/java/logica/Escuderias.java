@@ -2,19 +2,14 @@ package logica;
 
 import java.util.ArrayList;
 
+/**
+ * @author Gabriel Correa
+ */
 public class Escuderias {
-    private ArrayList<Escuderia> escuderias;
-    private static Escuderias instancia;
+    private final ArrayList<Escuderia> escuderias;
 
-    private Escuderias() {
+    public Escuderias() {
         escuderias = new ArrayList<>();
-    }
-
-    public static Escuderias getInstance() {
-        if (instancia == null) {
-            instancia = new Escuderias();
-        }
-        return instancia;
     }
 
     public Escuderia getEscuderia(int id) {
@@ -32,7 +27,10 @@ public class Escuderias {
         }
     }
 
-    public void removeEscuderia(Escuderia escuderia) {
-        escuderias.remove(escuderia);
+    public void removeEscuderia(int id) {
+        Escuderia escuderiaToRemove = getEscuderia(id);
+        if (escuderiaToRemove != null) {
+            escuderias.remove(escuderiaToRemove);
+        }
     }
 }

@@ -2,19 +2,14 @@ package logica;
 
 import java.util.ArrayList;
 
+/**
+ * @author Gabriel Correa
+ */
 public class Temporadas {
-    private ArrayList<Temporada> temporadas;
-    private static Temporadas instancia;
+    private final ArrayList<Temporada> temporadas;
 
-    private Temporadas() {
+    public Temporadas() {
         temporadas = new ArrayList<>();
-    }
-
-    public static Temporadas getInstance() {
-        if (instancia == null) {
-            instancia = new Temporadas();
-        }
-        return instancia;
     }
 
     public Temporada getTemporada(int anoTemporada) {
@@ -32,7 +27,10 @@ public class Temporadas {
         }
     }
 
-    public void removeTemporada(Temporada temporada) {
-        temporadas.remove(temporada);
+    public void removeTemporada(int id) {
+        Temporada temporadaToRemove = getTemporada(id);
+        if (temporadaToRemove != null) {
+            temporadas.remove(temporadaToRemove);
+        }
     }
 }

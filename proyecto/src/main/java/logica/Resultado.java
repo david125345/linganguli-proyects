@@ -1,5 +1,8 @@
 package logica;
 
+/**
+ * @author Gabriel Correa
+ */
 public class Resultado {
     private Piloto piloto;
     private Auto auto;
@@ -7,12 +10,10 @@ public class Resultado {
     private int cantVueltas;
     private String tiempoVueltas;
     private int puntos;
-    private GrandPrix grandPrix;
 
-    public Resultado(Piloto piloto, Auto auto, GrandPrix grandPrix) {
+    public Resultado(Piloto piloto, Auto auto) {
         this.piloto = piloto;
         this.auto = auto;
-        this.grandPrix = grandPrix;
     }
 
     public Auto getAuto() {
@@ -21,14 +22,6 @@ public class Resultado {
 
     public void setAuto(Auto auto) {
         this.auto = auto;
-    }
-
-    public GrandPrix getGrandPrix() {
-        return grandPrix;
-    }
-
-    public void setGrandPrix(GrandPrix grandPrix) {
-        this.grandPrix = grandPrix;
     }
 
     public Piloto getPiloto() {

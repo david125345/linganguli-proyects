@@ -2,19 +2,14 @@ package logica;
 
 import java.util.ArrayList;
 
+/**
+ * @author Gabriel Correa
+ */
 public class Proveedores {
-    private ArrayList<Proveedor> proveedores;
-    private static Proveedores instancia;
+    private final ArrayList<Proveedor> proveedores;
 
-    private Proveedores() {
+    public Proveedores() {
         proveedores = new ArrayList<>();
-    }
-
-    public static Proveedores getInstance() {
-        if (instancia == null) {
-            instancia = new Proveedores();
-        }
-        return instancia;
     }
 
     public Proveedor getProveedor(int id) {
@@ -32,7 +27,10 @@ public class Proveedores {
         }
     }
 
-    public void removeProveedor(Proveedor proveedor) {
-        proveedores.remove(proveedor);
+    public void removeProveedor(int id) {
+        Proveedor proveedorToRemove = getProveedor(id);
+        if (proveedorToRemove != null) {
+            proveedores.remove(proveedorToRemove);
+        }
     }
 }
