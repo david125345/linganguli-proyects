@@ -1,5 +1,7 @@
 package logica;
 import sql.Sqlconector;
+
+import java.sql.Connection;
 import java.util.Date;
 
 /**
@@ -149,6 +151,11 @@ public class F1app {
 
     public String[] Consultardatabase(String datosabuscar, String tabla) {
         return Sqlconector.Consultar(datosabuscar, tabla);
+    }
+
+    public boolean realizarprimeraconexiondatabase(String url, String usuario, String clave) {
+        Connection sql = Sqlconector.realizarConexion(url, usuario, clave);
+        return sql != null;
     }
 
 }
