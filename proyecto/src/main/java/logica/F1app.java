@@ -1,5 +1,5 @@
 package logica;
-
+import sql.Sqlconector;
 import java.util.Date;
 
 /**
@@ -17,12 +17,12 @@ public class F1app {
     private final Temporadas temporadas;
 
     private F1app() {
-        autos = new Autos();
-        circuitos = new Circuitos();
-        escuderias = new Escuderias();
-        pilotos = new Pilotos();
-        proveedores = new Proveedores();
-        temporadas = new Temporadas();
+        this.autos = new Autos();
+        this.circuitos = new Circuitos();
+        this.escuderias = new Escuderias();
+        this.pilotos = new Pilotos();
+        this.proveedores = new Proveedores();
+        this.temporadas = new Temporadas();
     }
 
     public static F1app getInstance() {
@@ -140,6 +140,15 @@ public class F1app {
 
     public void removeResultado(GrandPrix grandPrix, int idPiloto) {
         grandPrix.getResultados().removeResultado(idPiloto);
+    }
+
+    public void Insertintodatabase(String tabla, String datosainsertar, String valores) {
+        Sqlconector.EjecutarSentencia(tabla, datosainsertar, valores);
+
+    }
+
+    public String[] Consultardatabase(String datosabuscar, String tabla) {
+        return Sqlconector.Consultar(datosabuscar, tabla);
     }
 
 }
