@@ -58,7 +58,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
         JMenuGranprix.addActionListener(this::JMenuGranprixActionPerformed);
         jMenuBar1.add(JMenuGranprix);
 
-        jMenuTablaPuntos.setText("Tabla de puntos");
+        jMenuTablaPuntos.setText("Tabla de Puntos");
         jMenuTablaPuntos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenuTablaPuntosMouseClicked(evt);
@@ -120,8 +120,12 @@ public class VentanaOpciones extends javax.swing.JFrame {
 
     private void jMenuTablaPuntosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuTablaPuntosMouseClicked
         // TODO add your handling code here:
-      TablaDePuntos mostrarTablaDePuntos = new TablaDePuntos();
-      mostrarTablaDePuntos.setVisible(true);
+      javax.swing.JFrame ventanaTablaDePuntos = new javax.swing.JFrame("Tabla de Puntos");
+      ventanaTablaDePuntos.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+      ventanaTablaDePuntos.setContentPane(new TablaDePuntos());
+      ventanaTablaDePuntos.pack();
+      ventanaTablaDePuntos.setLocationRelativeTo(this);
+      ventanaTablaDePuntos.setVisible(true);
       this.setVisible(false);
     }//GEN-LAST:event_jMenuTablaPuntosMouseClicked
 

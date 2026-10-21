@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.nio.charset.StandardCharsets;
+import java.util.HexFormat;
+import org.kocakosm.jblake2.Blake2b;
 /**
  * @author Gabriel Correa
  */
@@ -101,4 +104,25 @@ public class Sqlconector {
 		return datos;
 	}
 	
+
+    public static boolean login(String usuario, String clave) {
+
+        String sql = "SELECT nombre FROM usuario WHERE usuario = ? AND clave = ?";
+        try {
+            Connection sqlbomboclat = realizarConexion();
+            PreparedStatement ps = sqlbomboclat.prepareStatement(sql);
+            ps.setString(1, usuario);
+            byte[] hash = new Blake2b(64).digest(clave.getBytes(StandardCharsets.UTF_8));
+            ps.setString(2, HexFormat.of().formatHex(hash));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error con la sentencia MYSQL: " + ex);
+            return false;
+        }
+    }
 }

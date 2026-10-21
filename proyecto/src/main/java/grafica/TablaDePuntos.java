@@ -215,9 +215,12 @@ public class TablaDePuntos extends javax.swing.JPanel {
     private void jButtonAtras2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtras2ActionPerformed
         // TODO add your handling code here
         
+        java.awt.Window ventana = javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (ventana != null) {
+            ventana.dispose();
+        }
         VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
-      mostrarVentanaOpciones.setVisible(true);
-      this.setVisible(false);
+        mostrarVentanaOpciones.setVisible(true);
     }//GEN-LAST:event_jButtonAtras2ActionPerformed
 
 
