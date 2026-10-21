@@ -32,11 +32,10 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
-        JMenuTemporadas = new javax.swing.JMenu();
+        JMenuGranprix = new javax.swing.JMenu();
         jMenuTablaPuntos = new javax.swing.JMenu();
         jMenuPilotos = new javax.swing.JMenu();
         jMenuCircuitos = new javax.swing.JMenu();
-        jMenuEscuderias = new javax.swing.JMenu();
         jMenuAutos = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -50,22 +49,45 @@ public class VentanaOpciones extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1080, 720));
         setResizable(false);
 
-        JMenuTemporadas.setText("Temporadas");
-        jMenuBar1.add(JMenuTemporadas);
+        JMenuGranprix.setText("Granprix");
+        JMenuGranprix.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JMenuGranprixMouseClicked(evt);
+            }
+        });
+        JMenuGranprix.addActionListener(this::JMenuGranprixActionPerformed);
+        jMenuBar1.add(JMenuGranprix);
 
         jMenuTablaPuntos.setText("Tabla de puntos");
+        jMenuTablaPuntos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuTablaPuntosMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuTablaPuntos);
 
         jMenuPilotos.setText("Pilotos");
+        jMenuPilotos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuPilotosMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuPilotos);
 
         jMenuCircuitos.setText("Circuitos");
+        jMenuCircuitos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuCircuitosMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuCircuitos);
 
-        jMenuEscuderias.setText("Escuderias");
-        jMenuBar1.add(jMenuEscuderias);
-
         jMenuAutos.setText("Autos");
+        jMenuAutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuAutosMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuAutos);
 
         setJMenuBar(jMenuBar1);
@@ -74,15 +96,58 @@ public class VentanaOpciones extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 441, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 698, Short.MAX_VALUE)
+            .addGap(0, 232, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JMenuGranprixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuGranprixActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JMenuGranprixActionPerformed
+
+    private void JMenuGranprixMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuGranprixMouseClicked
+        // TODO add your handling code here:
+        
+      granprix mostrargranprix = new granprix();
+      mostrargranprix.setVisible(true);
+      this.setVisible(false);
+    }//GEN-LAST:event_JMenuGranprixMouseClicked
+
+    private void jMenuTablaPuntosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuTablaPuntosMouseClicked
+        // TODO add your handling code here:
+      TablaDePuntos mostrarTablaDePuntos = new TablaDePuntos();
+      mostrarTablaDePuntos.setVisible(true);
+      this.setVisible(false);
+    }//GEN-LAST:event_jMenuTablaPuntosMouseClicked
+
+    private void jMenuPilotosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuPilotosMouseClicked
+        // TODO add your handling code here:
+      Pilotos mostrarPilotos = new Pilotos();
+      mostrarPilotos.setVisible(true);
+      this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuPilotosMouseClicked
+
+    private void jMenuCircuitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCircuitosMouseClicked
+        // TODO add your handling code here:
+      Circuitos mostrarCircuitos = new Circuitos();
+      mostrarCircuitos.setVisible(true);
+      this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuCircuitosMouseClicked
+
+    private void jMenuAutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAutosMouseClicked
+        // TODO add your handling code here:
+      Autos mostrarAutos = new Autos();
+      mostrarAutos.setVisible(true);
+      this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuAutosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -110,11 +175,10 @@ public class VentanaOpciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu JMenuTemporadas;
+    private javax.swing.JMenu JMenuGranprix;
     private javax.swing.JMenu jMenuAutos;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCircuitos;
-    private javax.swing.JMenu jMenuEscuderias;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jMenuPilotos;
