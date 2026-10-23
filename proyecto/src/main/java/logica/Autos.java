@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Gabriel Correa
  */
 public class Autos {
+
     private final ArrayList<Auto> autos;
 
     public Autos() {

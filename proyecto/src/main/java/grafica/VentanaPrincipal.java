@@ -9,9 +9,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
 
     /**
@@ -35,6 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JTextFieldContrasena = new javax.swing.JTextField();
         LabelUsuario = new javax.swing.JLabel();
         LabelContrasena = new javax.swing.JLabel();
+        BotonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -47,6 +49,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         LabelUsuario.setText("Usuario");
 
         LabelContrasena.setText("Contraseña");
+
+        BotonVolver.setText("Volver");
+        BotonVolver.addActionListener(this::BotonVolverActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,14 +70,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(JTextFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(179, 179, 179))
             .addGroup(layout.createSequentialGroup()
-                .addGap(314, 314, 314)
-                .addComponent(JButtonAceptar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(314, 314, 314)
+                        .addComponent(JButtonAceptar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BotonVolver)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(BotonVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -90,18 +102,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void JButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonAceptarActionPerformed
         // TODO add your handling code here:
-     
-        
-        
-      VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
-      mostrarVentanaOpciones.setVisible(true);
-      this.setVisible(false);
-        
+
+        String usuario = JTextFieldUsuario.getText();
+        String contrasena = JTextFieldContrasena.getText();
+
+        if (usuario == usuario) {
+            System.out.println("usuario era efectivamente igual a usuario");
+        }
+
+        VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
+        mostrarVentanaOpciones.setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_JButtonAceptarActionPerformed
 
     private void JTextFieldContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldContrasenaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTextFieldContrasenaActionPerformed
+
+    private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverActionPerformed
+        // TODO add your handling code here:
+        Crear_cuenta mostrarCrearCuenta = new Crear_cuenta();
+        mostrarCrearCuenta.setVisible(true);
+
+        this.setVisible(false);
+    }//GEN-LAST:event_BotonVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +154,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonVolver;
     private javax.swing.JButton JButtonAceptar;
     private javax.swing.JTextField JTextFieldContrasena;
     private javax.swing.JTextField JTextFieldUsuario;

@@ -4,6 +4,7 @@ package logica;
  * @author Gabriel Correa
  */
 public class Escuderia {
+
     private int id;
     private String nombre;
     private Auto auto;
@@ -15,26 +16,26 @@ public class Escuderia {
     }
 
     public int getId() {
-         return id; 
+        return id;
     }
 
-    public String getNombre() { 
+    public String getNombre() {
         return nombre;
     }
-    
-    public Auto getAuto() { 
-        return auto; 
+
+    public Auto getAuto() {
+        return auto;
     }
 
-    public void setId(int id) { 
-        this.id = id; 
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setNombre(String nombre) { 
-        this.nombre = nombre; 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setAuto(Auto auto) { 
-        this.auto = auto; 
+    public void setAuto(Auto auto) {
+        this.auto = auto;
     }
 }

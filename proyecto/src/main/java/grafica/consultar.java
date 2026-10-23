@@ -9,7 +9,7 @@ package grafica;
  * @author 58153938
  */
 public class consultar extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(consultar.class.getName());
 
     /**
@@ -76,7 +76,7 @@ public class consultar extends javax.swing.JFrame {
         // TODO add your handling code here:
         VentanaPrincipal mostrarVentanaprincipal = new VentanaPrincipal();
         mostrarVentanaprincipal.setVisible(true);
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_jButtonSi1ActionPerformed
 

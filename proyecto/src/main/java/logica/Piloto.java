@@ -1,10 +1,12 @@
 package logica;
 
 import java.util.Date;
+
 /**
  * @author Gabriel Correa
  */
 public class Piloto {
+
     private int id;
     private String nombre;
     private String nacionalidad;

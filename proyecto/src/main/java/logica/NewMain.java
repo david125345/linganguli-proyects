@@ -13,13 +13,12 @@ import grafica.consultar;
 public class NewMain {
 
     public static void main(String[] args) {
-    java.awt.EventQueue.invokeLater(() -> {
-        new consultar().setVisible(true);
-    });
-}
+        java.awt.EventQueue.invokeLater(() -> {
+            new consultar().setVisible(true);
+        });
+    }
     /**
      * @param args the command line arguments
      */
-    
-    
+
 }

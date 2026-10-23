@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Gabriel Correa
  */
 public class Proveedores {
+
     private final ArrayList<Proveedor> proveedores;
 
     public Proveedores() {

@@ -9,7 +9,7 @@ package grafica;
  * @author dasangu
  */
 public class VentanaOpciones extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaOpciones.class.getName());
 
     /**
@@ -58,7 +58,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
         JMenuGranprix.addActionListener(this::JMenuGranprixActionPerformed);
         jMenuBar1.add(JMenuGranprix);
 
-        jMenuTablaPuntos.setText("Tabla de Puntos");
+        jMenuTablaPuntos.setText("Tabla de puntos");
         jMenuTablaPuntos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenuTablaPuntosMouseClicked(evt);
@@ -112,45 +112,45 @@ public class VentanaOpciones extends javax.swing.JFrame {
 
     private void JMenuGranprixMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuGranprixMouseClicked
         // TODO add your handling code here:
-        
-      granprix mostrargranprix = new granprix();
-      mostrargranprix.setVisible(true);
-      this.setVisible(false);
+
+        granprix mostrargranprix = new granprix();
+        mostrargranprix.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_JMenuGranprixMouseClicked
 
     private void jMenuTablaPuntosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuTablaPuntosMouseClicked
         // TODO add your handling code here:
-      javax.swing.JFrame ventanaTablaDePuntos = new javax.swing.JFrame("Tabla de Puntos");
-      ventanaTablaDePuntos.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-      ventanaTablaDePuntos.setContentPane(new TablaDePuntos());
-      ventanaTablaDePuntos.pack();
-      ventanaTablaDePuntos.setLocationRelativeTo(this);
-      ventanaTablaDePuntos.setVisible(true);
-      this.setVisible(false);
+        javax.swing.JFrame ventanaTablaDePuntos = new javax.swing.JFrame("Tabla de Puntos");
+        ventanaTablaDePuntos.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        ventanaTablaDePuntos.setContentPane(new TablaDePuntos());
+        ventanaTablaDePuntos.pack();
+        ventanaTablaDePuntos.setLocationRelativeTo(this);
+        ventanaTablaDePuntos.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jMenuTablaPuntosMouseClicked
 
     private void jMenuPilotosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuPilotosMouseClicked
         // TODO add your handling code here:
-      Pilotos mostrarPilotos = new Pilotos();
-      mostrarPilotos.setVisible(true);
-      this.setVisible(false);
-        
+        Pilotos mostrarPilotos = new Pilotos();
+        mostrarPilotos.setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_jMenuPilotosMouseClicked
 
     private void jMenuCircuitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCircuitosMouseClicked
         // TODO add your handling code here:
-      Circuitos mostrarCircuitos = new Circuitos();
-      mostrarCircuitos.setVisible(true);
-      this.setVisible(false);
-        
+        Circuitos mostrarCircuitos = new Circuitos();
+        mostrarCircuitos.setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_jMenuCircuitosMouseClicked
 
     private void jMenuAutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAutosMouseClicked
         // TODO add your handling code here:
-      Autos mostrarAutos = new Autos();
-      mostrarAutos.setVisible(true);
-      this.setVisible(false);
-        
+        Autos mostrarAutos = new Autos();
+        mostrarAutos.setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_jMenuAutosMouseClicked
 
     /**

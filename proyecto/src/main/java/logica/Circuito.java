@@ -4,11 +4,13 @@ package logica;
  * @author Gabriel Correa
  */
 public class Circuito {
+
     private int id;
     private String nombre;
     private String pais;
     private int longitud;
     private int numeroVueltas;
+
     public Circuito(int id, String nombre, int longitud, String pais, int numeroVueltas) {
         this.id = id;
         this.nombre = nombre;
