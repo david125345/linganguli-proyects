@@ -4,12 +4,15 @@
  */
 package grafica;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dasangu
  */
 public class Autos extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Autos.class.getName());
 
     /**
@@ -30,13 +33,13 @@ public class Autos extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldModelo = new javax.swing.JTextField();
+        jTextFieldIdentificador = new javax.swing.JTextField();
         jButtonAceptar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableAutos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxEscuderia = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jButtonAtras2 = new javax.swing.JButton();
 
@@ -46,27 +49,33 @@ public class Autos extends javax.swing.JFrame {
 
         jLabel2.setText("Identificador");
 
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
+        jTextFieldModelo.addActionListener(this::jTextFieldModeloActionPerformed);
 
         jButtonAceptar1.setText("Aceptar");
         jButtonAceptar1.addActionListener(this::jButtonAceptar1ActionPerformed);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Escuderia", "Modelo", "Identificador"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableAutos);
 
         jLabel3.setText("Escuderia");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEscuderia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEscuderia.addActionListener(this::jComboBoxEscuderiaActionPerformed);
 
         jLabel4.setText("Autos");
 
@@ -98,9 +107,9 @@ public class Autos extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButtonAceptar1)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField2)
-                                        .addComponent(jTextField1)
-                                        .addComponent(jComboBox1, 0, 175, Short.MAX_VALUE)))))))
+                                        .addComponent(jTextFieldIdentificador)
+                                        .addComponent(jTextFieldModelo)
+                                        .addComponent(jComboBoxEscuderia, 0, 175, Short.MAX_VALUE)))))))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -110,15 +119,15 @@ public class Autos extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                    .addComponent(jComboBoxEscuderia, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar1)
@@ -131,21 +140,43 @@ public class Autos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldModeloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldModeloActionPerformed
 
     private void jButtonAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptar1ActionPerformed
         // TODO add your handling code here:
+        if (jTextFieldModelo.getText().trim().isEmpty() == true) {
+
+            JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
+
+        } else {
+
+            try {
+                String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
+                String modelo = jTextFieldModelo.getText();
+                int identificador = Integer.parseInt(jTextFieldIdentificador.getText());
+
+                DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
+                tabla.addRow(new Object[]{escuderia, modelo, identificador});
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Inserte valores validos");
+            }
+        }
+
     }//GEN-LAST:event_jButtonAceptar1ActionPerformed
 
     private void jButtonAtras2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtras2ActionPerformed
         // TODO add your handling code here:
-        
-      VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
-      mostrarVentanaOpciones.setVisible(true);
-      this.setVisible(false);
+
+        VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
+        mostrarVentanaOpciones.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonAtras2ActionPerformed
+
+    private void jComboBoxEscuderiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscuderiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxEscuderiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,14 +206,14 @@ public class Autos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar1;
     private javax.swing.JButton jButtonAtras2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxEscuderia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable jTableAutos;
+    private javax.swing.JTextField jTextFieldIdentificador;
+    private javax.swing.JTextField jTextFieldModelo;
     // End of variables declaration//GEN-END:variables
 }

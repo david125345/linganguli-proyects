@@ -9,7 +9,7 @@ package grafica;
  * @author 58153938
  */
 public class Crear_cuenta extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Crear_cuenta.class.getName());
 
     /**
@@ -31,9 +31,10 @@ public class Crear_cuenta extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        JTextFIeldNombre = new javax.swing.JTextField();
+        JTextfieldContrasena = new javax.swing.JTextField();
         jButtonAceptarCrear1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,8 +44,13 @@ public class Crear_cuenta extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña");
 
+        JTextFIeldNombre.addActionListener(this::JTextFIeldNombreActionPerformed);
+
         jButtonAceptarCrear1.setText("Aceptar");
         jButtonAceptarCrear1.addActionListener(this::jButtonAceptarCrear1ActionPerformed);
+
+        jButton1.setText("Volver");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,13 +66,17 @@ public class Crear_cuenta extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(JTextfieldContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(JTextFIeldNombre))
                 .addContainerGap(152, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonAceptarCrear1)
                 .addGap(253, 253, 253))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,14 +85,16 @@ public class Crear_cuenta extends javax.swing.JFrame {
                 .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTextFIeldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTextfieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonAceptarCrear1)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(57, 57, 57))
         );
 
         pack();
@@ -90,11 +102,23 @@ public class Crear_cuenta extends javax.swing.JFrame {
 
     private void jButtonAceptarCrear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarCrear1ActionPerformed
         // TODO add your handling code here:
-        
-      VentanaPrincipal mostrarVentanaPrincipal = new VentanaPrincipal();
-      mostrarVentanaPrincipal.setVisible(true);
-      this.setVisible(false);
+
+        VentanaPrincipal mostrarVentanaPrincipal = new VentanaPrincipal();
+        mostrarVentanaPrincipal.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonAceptarCrear1ActionPerformed
+
+    private void JTextFIeldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFIeldNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTextFIeldNombreActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        VentanaPrincipal mostrarVentanaprincipal = new VentanaPrincipal();
+        mostrarVentanaprincipal.setVisible(true);
+
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,11 +146,12 @@ public class Crear_cuenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JTextFIeldNombre;
+    private javax.swing.JTextField JTextfieldContrasena;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAceptarCrear1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

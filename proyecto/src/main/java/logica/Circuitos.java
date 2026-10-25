@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Gabriel Correa
  */
 public class Circuitos {
+
     private final ArrayList<Circuito> circuitos;
 
     public Circuitos() {

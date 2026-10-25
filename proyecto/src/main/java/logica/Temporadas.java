@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Gabriel Correa
  */
 public class Temporadas {
+
     private final ArrayList<Temporada> temporadas;
 
     public Temporadas() {

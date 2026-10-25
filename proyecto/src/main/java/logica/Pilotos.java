@@ -5,8 +5,8 @@ import java.util.ArrayList;
 /**
  * @author Gabriel Correa
  */
-
 public class Pilotos {
+
     private final ArrayList<Piloto> pilotos;
 
     public Pilotos() {

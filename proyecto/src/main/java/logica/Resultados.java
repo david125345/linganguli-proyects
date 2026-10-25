@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Gabriel Correa
  */
 public class Resultados {
+
     private final ArrayList<Resultado> resultados;
 
     public Resultados() {

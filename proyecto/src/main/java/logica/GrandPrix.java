@@ -6,6 +6,7 @@ import java.util.Date;
  * @author Gabriel Correa
  */
 public class GrandPrix {
+
     private int id;
     private String nombre;
     private Date fecha;

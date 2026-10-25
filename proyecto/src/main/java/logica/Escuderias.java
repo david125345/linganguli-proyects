@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Gabriel Correa
  */
 public class Escuderias {
+
     private final ArrayList<Escuderia> escuderias;
 
     public Escuderias() {

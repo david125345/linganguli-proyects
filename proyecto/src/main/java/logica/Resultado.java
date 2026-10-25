@@ -4,6 +4,7 @@ package logica;
  * @author Gabriel Correa
  */
 public class Resultado {
+
     private Piloto piloto;
     private Auto auto;
     private int posicion;
