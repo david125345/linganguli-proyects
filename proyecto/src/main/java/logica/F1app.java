@@ -1,8 +1,8 @@
 package logica;
-import sql.Sqlconector;
-
 import java.sql.Connection;
 import java.util.Date;
+
+import sql.Sqlconector;
 
 /**
  * @author Gabriel Correa
@@ -158,4 +158,11 @@ public class F1app {
         return sql != null;
     }
 
+    public int registeruserdatabase(String usuario, String clave, String confirmarClave) {
+        return Sqlconector.registeruser(usuario, clave, confirmarClave);
+    }
+
+    public boolean loginuserdatabase(String usuario, String clave) {
+        return Sqlconector.login(usuario, clave);
+    }
 }
