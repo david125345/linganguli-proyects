@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS admin;
 
 CREATE TABLE usuario (
-    nombre Varchar(20) AUTO_INCREMENT NOT NULL,
+    nombre Varchar(20) NOT NULL,
     clave Varchar(128) NOT NULL,
     isadmin tinyint(1),
     PRIMARY KEY (ID_USUARIO)
