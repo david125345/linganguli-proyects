@@ -11,14 +11,14 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
 
     /**
      * Creates new form grafica
      */
-    public VentanaPrincipal() {
+    public Login() {
         initComponents();
     }
 
@@ -106,13 +106,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String usuario = JTextFieldUsuario.getText();
         String contrasena = JTextFieldContrasena.getText();
 
-        if (usuario == usuario) {
-            System.out.println("usuario era efectivamente igual a usuario");
+        if (usuario == "root" && contrasena == "abc123") {
+            VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
+            mostrarVentanaOpciones.setVisible(true);
+            this.setVisible(false);
+            
+        } else {
+            VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
+            mostrarVentanaOpciones.setVisible(true);
+            this.setVisible(false);
         }
 
-        VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
-        mostrarVentanaOpciones.setVisible(true);
-        this.setVisible(false);
 
     }//GEN-LAST:event_JButtonAceptarActionPerformed
 
@@ -150,7 +154,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

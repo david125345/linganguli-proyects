@@ -101,11 +101,11 @@ public class Crear_cuenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAceptarCrear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarCrear1ActionPerformed
-        // TODO add your handling code here:
-
-        VentanaPrincipal mostrarVentanaPrincipal = new VentanaPrincipal();
+        Login mostrarVentanaPrincipal = new Login();
         mostrarVentanaPrincipal.setVisible(true);
         this.setVisible(false);
+        
+        
     }//GEN-LAST:event_jButtonAceptarCrear1ActionPerformed
 
     private void JTextFIeldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFIeldNombreActionPerformed
@@ -114,7 +114,7 @@ public class Crear_cuenta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        VentanaPrincipal mostrarVentanaprincipal = new VentanaPrincipal();
+        Login mostrarVentanaprincipal = new Login();
         mostrarVentanaprincipal.setVisible(true);
 
         this.setVisible(false);
