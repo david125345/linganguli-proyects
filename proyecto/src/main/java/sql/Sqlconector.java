@@ -1,12 +1,13 @@
 package sql;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.nio.charset.StandardCharsets;
 import java.util.HexFormat;
+
 import org.kocakosm.jblake2.Blake2b;
 /**
  * @author Gabriel Correa
@@ -106,23 +107,68 @@ public class Sqlconector {
 	
 
     public static boolean login(String usuario, String clave) {
+        if (usuario == null || clave == null) {
+            return false;
+        }
 
         String sql = "SELECT nombre FROM usuario WHERE usuario = ? AND clave = ?";
-        try {
-            Connection sqlbomboclat = realizarConexion();
-            PreparedStatement ps = sqlbomboclat.prepareStatement(sql);
-            ps.setString(1, usuario);
-            byte[] hash = new Blake2b(64).digest(clave.getBytes(StandardCharsets.UTF_8));
-            ps.setString(2, HexFormat.of().formatHex(hash));
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return true;
-            } else {
+        try (Connection connection = realizarConexion()) {
+            if (connection == null) {
+                System.err.println("Error en login: no hay conexión con MYSQL.");
                 return false;
+            }
+
+            byte[] hash = new Blake2b(64).digest(clave.getBytes(StandardCharsets.UTF_8));
+            String hashHex = HexFormat.of().formatHex(hash);
+
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, usuario);
+                statement.setString(2, hashHex);
+                try (ResultSet result = statement.executeQuery()) {
+                    return result.next();
+                }
             }
         } catch (SQLException ex) {
             System.out.println("Error con la sentencia MYSQL: " + ex);
             return false;
+        }
+    }
+
+    public static int registeruser(String usuario, String clave, String confirmarClave) {
+        if (clave == null || !clave.equals(confirmarClave)) {
+            return 2; // error, las claves no coinciden
+        }
+        if (usuario == null) {
+            return 0; // error, usuario no puede ser nulo
+        }
+
+        String checkSql = "SELECT 1 FROM usuario WHERE usuario = ? LIMIT 1";
+        String insertSql = "INSERT INTO usuario (usuario, clave) VALUES (?, ?)";
+        try (Connection connection = realizarConexion()) {
+            if (connection == null) {
+                System.err.println("Error en registro: no hay conexión con MYSQL.");
+                return 0; //error, no hay conexion con MYSQL
+            }
+
+            try (PreparedStatement checkStatement = connection.prepareStatement(checkSql)) {
+                checkStatement.setString(1, usuario);
+                try (ResultSet result = checkStatement.executeQuery()) {
+                    if (result.next()) {
+                        return 3; // error, el usuario ya existe
+                    }
+                }
+            }
+
+            byte[] hash = new Blake2b(64).digest(clave.getBytes(StandardCharsets.UTF_8));
+            String hashHex = HexFormat.of().formatHex(hash);
+            try (PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
+                insertStatement.setString(1, usuario);
+                insertStatement.setString(2, hashHex);
+                return insertStatement.executeUpdate() == 1 ? 1 : 0; //muy rara notación (no pensé en otra cosa), basicamente devuelve 1 si se insertó correctamente, 0 si no se insertó correctamente, como funciona por adentro es irrelevante, solo agradezco que existe stack overflow.
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error con la sentencia MYSQL: " + ex);
+            return 0; //error, algo sql idk
         }
     }
 }
