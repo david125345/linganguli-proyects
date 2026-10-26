@@ -1,7 +1,5 @@
 package logica;
 
-import sql.Sqlconector;
-
 import java.sql.Connection;
 import java.util.Date;
 
@@ -165,7 +163,14 @@ public class F1app {
         return Sqlconector.registeruser(usuario, clave, confirmarClave);
     }
 
-    public boolean loginuserdatabase(String usuario, String clave) {
-        return Sqlconector.login(usuario, clave);
+    public int loginuserdatabase(String usuario, String clave) {
+        if (Sqlconector.login(usuario, clave)) {
+            if (Sqlconector.Consultar("isadmin", "usuarios" )[0].equals("1:")) {
+                return 2;
+            }
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
