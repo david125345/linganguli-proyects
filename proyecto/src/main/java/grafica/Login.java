@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logica.F1app;
 
 public class Login extends javax.swing.JFrame {
 
@@ -103,18 +104,24 @@ public class Login extends javax.swing.JFrame {
         String usuario = JTextFieldUsuario.getText();
         String contrasena = JTextFieldContrasena.getText();
 
-        if (usuario == "root" && contrasena == "abc123") {
-            VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
-            mostrarVentanaOpciones.setVisible(true);
-            this.setVisible(false);
-            
-        } else {
-            VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
-            mostrarVentanaOpciones.setVisible(true);
-            this.setVisible(false);
+        F1app f1 = F1app.getInstance();
+
+        switch (f1.loginuserdatabase(usuario, contrasena)){
+            case 0:
+                JOptionPane.showMessageDialog(null, "Inicio de sesion fallido, compruebe el usuario o la contraseña");
+                break;
+            case 1:
+                Resultados mostrarResultados = new Resultados();
+                mostrarResultados.setVisible(true);
+                this.setVisible(false);
+                break;
+
+            case 2:
+                VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
+                mostrarVentanaOpciones.setVisible(true);
+                this.setVisible(false);
+                break;
         }
-
-
     }//GEN-LAST:event_JButtonAceptarActionPerformed
 
     private void JTextFieldContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldContrasenaActionPerformed

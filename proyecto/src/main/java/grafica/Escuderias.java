@@ -9,15 +9,12 @@ import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import logica.F1app;
 
-
- 
-
 /**
  *
  * @author 58153938
  */
 public class Escuderias extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Escuderias.class.getName());
 
     /**
@@ -42,9 +39,7 @@ public class Escuderias extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jButtonAceptar = new javax.swing.JButton();
         jTextFieldNombre = new javax.swing.JTextField();
-        jTextFieldIdentificador = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jButtonAtras = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableEscuderia = new javax.swing.JTable();
@@ -83,11 +78,7 @@ public class Escuderias extends javax.swing.JFrame {
 
         jTextFieldNombre.addActionListener(this::jTextFieldNombreActionPerformed);
 
-        jTextFieldIdentificador.addActionListener(this::jTextFieldIdentificadorActionPerformed);
-
         jLabel1.setText("Nombre");
-
-        jLabel2.setText("Identificador");
 
         jButtonAtras.setText("Atrás");
         jButtonAtras.addActionListener(this::jButtonAtrasActionPerformed);
@@ -97,11 +88,11 @@ public class Escuderias extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Identificador"
+                "Nombre"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -111,7 +102,6 @@ public class Escuderias extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTableEscuderia);
         if (jTableEscuderia.getColumnModel().getColumnCount() > 0) {
             jTableEscuderia.getColumnModel().getColumn(0).setResizable(false);
-            jTableEscuderia.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jLabel3.setText("Escuderias");
@@ -123,20 +113,16 @@ public class Escuderias extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
+                        .addGap(227, 227, 227)
                         .addComponent(jButtonAtras)
-                        .addGap(51, 51, 51)
+                        .addGap(28, 28, 28)
                         .addComponent(jButtonAceptar)
                         .addGap(0, 52, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(jTextFieldNombre))))
+                        .addComponent(jLabel1)
+                        .addGap(111, 111, 111)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(204, 204, 204))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,11 +140,7 @@ public class Escuderias extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar)
                     .addComponent(jButtonAtras))
@@ -170,9 +152,7 @@ public class Escuderias extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-   
-    
+
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
         // TODO add your handling code here:
         VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
@@ -184,13 +164,9 @@ public class Escuderias extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
-    private void jTextFieldIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdentificadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIdentificadorActionPerformed
-
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         // TODO add your handling code here:
-         if (jTextFieldNombre.getText().trim().isEmpty() || jTextFieldIdentificador.getText().trim().isEmpty() == true) {
+        if (jTextFieldNombre.getText().trim().isEmpty() == true) {
 
             JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
 
@@ -198,30 +174,26 @@ public class Escuderias extends javax.swing.JFrame {
 
             try {
                 String nombre = jTextFieldNombre.getText();
-                int identificador = Integer.parseInt(jTextFieldIdentificador.getText());
-                
-                F1app F1 = F1app.getInstance();
-                F1.Insertintodatabase(
-                   "escuderia",
-                   "nombre, identificador",
-                    "'" + nombre + "', " + identificador);
-                
+
+                F1app f1 = F1app.getInstance();
+                f1.Insertintodatabase("escuderia", "nombre", nombre);
                 DefaultTableModel tabla = (DefaultTableModel) jTableEscuderia.getModel();
-               
-               tabla.addRow(new Object[]{nombre, identificador});
+                tabla.addRow(new Object[]{nombre});
+                
+                
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
-       
+
         }
-     
+
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-         F1app F1 = F1app.getInstance();
+        F1app F1 = F1app.getInstance();
         F1.realizarprimeraconexiondatabase("jdbc:mysql://localhost:3306/Testing", "rooy", "esoquesentischocandocontucola");
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -239,17 +211,16 @@ public class Escuderias extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-ArrayList<Autos> listaautos = new ArrayList<>();
+        ArrayList<Autos> listaautos = new ArrayList<>();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Escuderias().setVisible(true));
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -257,7 +228,6 @@ ArrayList<Autos> listaautos = new ArrayList<>();
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableEscuderia;
-    private javax.swing.JTextField jTextFieldIdentificador;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,18 +11,11 @@ import grafica.consultar;
  * @author 58153938
  */
 public class NewMain {
- 
-    
     public static void main(String[] args) {
         F1app F1 = F1app.getInstance();
-        F1.realizarprimeraconexiondatabase("jdbc:mysql://localhost:3306/Testing", "rooy", "esoquesentischocandocontucola");
-            
+        F1.realizarprimeraconexiondatabase("jdbc:mysql://localhost:3306/Formula1", "rooy", "esoquesentischocandocontucola");
         java.awt.EventQueue.invokeLater(() -> {
             new consultar().setVisible(true);
         });
     }
-    /**
-     * @param args the command line arguments
-     */
-
 }

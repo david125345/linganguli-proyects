@@ -167,16 +167,16 @@ public class Pilotos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonAceptar1ActionPerformed
 
-    private void jTextFieldIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdentificadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIdentificadorActionPerformed
-
     private void jButtonAtras2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtras2ActionPerformed
         // TODO add your handling code here:
         VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
         mostrarVentanaOpciones.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonAtras2ActionPerformed
+
+    private void jTextFieldIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdentificadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIdentificadorActionPerformed
 
     /**
      * @param args the command line arguments
