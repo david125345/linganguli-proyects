@@ -17,6 +17,11 @@
     <artifactId>jblake2</artifactId>
     <version>0.5</version>
 </dependency>
+<dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.0.33</version>
+</dependency>
 </dependencies>
 
 

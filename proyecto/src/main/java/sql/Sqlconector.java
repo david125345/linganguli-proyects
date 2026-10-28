@@ -37,6 +37,7 @@ public class Sqlconector {
             Sqlconector.clave = clave;
         }
 		try {
+            
 		conexion = DriverManager.getConnection(url, usuario, clave);
 		} catch (SQLException e) {
 		System.err.println("Error en conexion MYSQL: " + e.getMessage());
@@ -83,11 +84,10 @@ public class Sqlconector {
 	public static String[] Consultar(String datosabuscar, String tabla) {
         String[] datos = new String[datosabuscar.split(",").length];
 		try {
-            String sql = "SELECT ? FROM ?";
+            String sql = "SELECT ? FROM " + tabla;
 		    Connection sqlbomboclat = realizarConexion();
 		    PreparedStatement ps = sqlbomboclat.prepareStatement(sql);
 		    ps.setString(1, datosabuscar);    
-		    ps.setString(2, tabla);
 		    ResultSet rs = ps.executeQuery();
             String[] valores = datosabuscar.split(",");
             String cosas = "";
@@ -111,7 +111,7 @@ public class Sqlconector {
             return false;
         }
 
-        String sql = "SELECT nombre FROM usuario WHERE usuario = ? AND clave = ?";
+        String sql = "SELECT nombre, clave FROM usuario WHERE nombre = ? AND clave = ?";
         try (Connection connection = realizarConexion()) {
             if (connection == null) {
                 System.err.println("Error en login: no hay conexión con MYSQL.");
@@ -142,8 +142,8 @@ public class Sqlconector {
             return 0; // error, usuario no puede ser nulo
         }
 
-        String checkSql = "SELECT 1 FROM usuario WHERE usuario = ? LIMIT 1";
-        String insertSql = "INSERT INTO usuario (usuario, clave) VALUES (?, ?)";
+        String checkSql = "SELECT 1 FROM usuario WHERE nombre = ? LIMIT 1";
+        String insertSql = "INSERT INTO usuario (nombre, clave) VALUES (?, ?)";
         try (Connection connection = realizarConexion()) {
             if (connection == null) {
                 System.err.println("Error en registro: no hay conexión con MYSQL.");

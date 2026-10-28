@@ -154,8 +154,12 @@ public class F1app {
     }
 
     public boolean realizarprimeraconexiondatabase(String url, String usuario, String clave) {
-        Connection sql = Sqlconector.realizarConexion(url, usuario, clave);
-        return sql != null;
+        if (Sqlconector.conectar()) {
+            Connection sql = Sqlconector.realizarConexion(url, usuario, clave);
+            return sql != null;
+        } else {
+            return false;
+        }
     }
 
     public int registeruserdatabase(String usuario, String clave, String confirmarClave) {
@@ -164,7 +168,8 @@ public class F1app {
 
     public int loginuserdatabase(String usuario, String clave) {
         if (Sqlconector.login(usuario, clave)) {
-            if (Sqlconector.Consultar("isadmin", "usuarios" )[0].equals("1:")) {
+            String bombo = Sqlconector.Consultar("isadmin", "usuario")[0];
+            if (bombo != null && bombo.equals("1:")) {
                 return 2;
             }
             return 1;
