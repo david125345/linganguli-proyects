@@ -178,9 +178,11 @@ public class Escuderias extends javax.swing.JFrame {
                 F1app f1 = F1app.getInstance();
                 f1.Insertintodatabase("escuderia", "nombre", nombre);
                 DefaultTableModel tabla = (DefaultTableModel) jTableEscuderia.getModel();
+                
+                
+                
+                
                 tabla.addRow(new Object[]{nombre});
-                
-                
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }

@@ -117,8 +117,8 @@ public class Crear_cuenta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Login mostrarVentanaprincipal = new Login();
-        mostrarVentanaprincipal.setVisible(true);
+        consultar mostrarConsultar = new consultar();
+        mostrarConsultar.setVisible(true);
 
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

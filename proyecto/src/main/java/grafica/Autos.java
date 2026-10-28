@@ -34,9 +34,7 @@ public class Autos extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jTextFieldModelo = new javax.swing.JTextField();
-        jTextFieldIdentificador = new javax.swing.JTextField();
         jButtonAceptar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAutos = new javax.swing.JTable();
@@ -49,8 +47,6 @@ public class Autos extends javax.swing.JFrame {
 
         jLabel1.setText("Modelo");
 
-        jLabel2.setText("Identificador");
-
         jTextFieldModelo.addActionListener(this::jTextFieldModeloActionPerformed);
 
         jButtonAceptar1.setText("Aceptar");
@@ -61,11 +57,11 @@ public class Autos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Escuderia", "Modelo", "Identificador"
+                "Escuderia", "Modelo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -99,8 +95,7 @@ public class Autos extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(118, 118, 118))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -109,7 +104,6 @@ public class Autos extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButtonAceptar1)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextFieldIdentificador)
                                         .addComponent(jTextFieldModelo)
                                         .addComponent(jComboBoxEscuderia, 0, 175, Short.MAX_VALUE)))))))
                 .addContainerGap(107, Short.MAX_VALUE))
@@ -126,11 +120,7 @@ public class Autos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar1)
                     .addComponent(jButtonAtras2))
@@ -157,10 +147,9 @@ public class Autos extends javax.swing.JFrame {
             try {
                 String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
                 String modelo = jTextFieldModelo.getText();
-                int identificador = Integer.parseInt(jTextFieldIdentificador.getText());
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
-                tabla.addRow(new Object[]{escuderia, modelo, identificador});
+                tabla.addRow(new Object[]{escuderia, modelo});
                  F1app F1 = F1app.getInstance();
                   F1.Insertintodatabase("auto", modelo, modelo);
             } catch (NumberFormatException e) {
@@ -216,12 +205,10 @@ public class Autos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAtras2;
     private javax.swing.JComboBox<String> jComboBoxEscuderia;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAutos;
-    private javax.swing.JTextField jTextFieldIdentificador;
     private javax.swing.JTextField jTextFieldModelo;
     // End of variables declaration//GEN-END:variables
 }

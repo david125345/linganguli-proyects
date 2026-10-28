@@ -38,6 +38,7 @@ public class Login extends javax.swing.JFrame {
         LabelUsuario = new javax.swing.JLabel();
         LabelContrasena = new javax.swing.JLabel();
         BotonVolver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -53,6 +54,8 @@ public class Login extends javax.swing.JFrame {
 
         BotonVolver.setText("Volver");
         BotonVolver.addActionListener(this::BotonVolverActionPerformed);
+
+        jLabel1.setText("Login");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,16 +74,23 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(JTextFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(179, 179, 179))
             .addGroup(layout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(BotonVolver)
-                .addGap(61, 61, 61)
-                .addComponent(JButtonAceptar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(BotonVolver)
+                        .addGap(61, 61, 61)
+                        .addComponent(JButtonAceptar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -130,8 +140,8 @@ public class Login extends javax.swing.JFrame {
 
     private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverActionPerformed
         // TODO add your handling code here:
-        Crear_cuenta mostrarCrearCuenta = new Crear_cuenta();
-        mostrarCrearCuenta.setVisible(true);
+        consultar mostrarConsultar = new consultar();
+        mostrarConsultar.setVisible(true);
 
         this.setVisible(false);
     }//GEN-LAST:event_BotonVolverActionPerformed
@@ -168,5 +178,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField JTextFieldUsuario;
     private javax.swing.JLabel LabelContrasena;
     private javax.swing.JLabel LabelUsuario;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
