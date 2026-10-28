@@ -4,6 +4,8 @@
  */
 package grafica;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import logica.F1app;
 
 /**
@@ -33,8 +35,8 @@ public class Crear_cuenta extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        JTextFieldNombre = new javax.swing.JTextField();
-        JTextfieldContrasena = new javax.swing.JTextField();
+        jTextFieldUsuario = new javax.swing.JTextField();
+        jTextFieldContrasena = new javax.swing.JTextField();
         jButtonAceptarCrear1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -42,13 +44,13 @@ public class Crear_cuenta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nombre");
+        jLabel1.setText("Usuario");
 
         jLabel2.setText("Crear Cuenta");
 
         jLabel3.setText("Contraseña");
 
-        JTextFieldNombre.addActionListener(this::JTextFieldNombreActionPerformed);
+        jTextFieldUsuario.addActionListener(this::jTextFieldUsuarioActionPerformed);
 
         jButtonAceptarCrear1.setText("Aceptar");
         jButtonAceptarCrear1.addActionListener(this::jButtonAceptarCrear1ActionPerformed);
@@ -81,8 +83,8 @@ public class Crear_cuenta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonAceptarCrear1)
-                    .addComponent(JTextfieldContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                    .addComponent(JTextFieldNombre)
+                    .addComponent(jTextFieldContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(jTextFieldUsuario)
                     .addComponent(jTextFieldConfirmarContrasena))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
@@ -93,11 +95,11 @@ public class Crear_cuenta extends javax.swing.JFrame {
                 .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(JTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(JTextfieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -114,22 +116,29 @@ public class Crear_cuenta extends javax.swing.JFrame {
 
     private void jButtonAceptarCrear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarCrear1ActionPerformed
 
+        if (jTextFieldUsuario.getText().trim().isEmpty() == true) {
+            JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
+        } else {
+            try {
+                String nombre = jTextFieldUsuario.getText();
+                String contrasena = jTextFieldContrasena.getText();
+                String confirmarContrasena = jTextFieldConfirmarContrasena.getText();
+                F1app f1 = F1app.getInstance();
+                f1.registeruserdatabase(nombre, contrasena, confirmarContrasena);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Inserte valores validos");
+            }
+
+        }
         Login mostrarVentanaPrincipal = new Login();
         mostrarVentanaPrincipal.setVisible(true);
         this.setVisible(false);
 
-        
-        
-        
-        F1app f1 = F1app.getInstance();
-        f1.registeruserdatabase(usuario, clave, confirmarClave);
-
-
     }//GEN-LAST:event_jButtonAceptarCrear1ActionPerformed
 
-    private void JTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldNombreActionPerformed
+    private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTextFieldNombreActionPerformed
+    }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -169,8 +178,6 @@ public class Crear_cuenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JTextFieldNombre;
-    private javax.swing.JTextField JTextfieldContrasena;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAceptarCrear1;
     private javax.swing.JLabel jLabel1;
@@ -178,5 +185,7 @@ public class Crear_cuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextFieldConfirmarContrasena;
+    private javax.swing.JTextField jTextFieldContrasena;
+    private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 }

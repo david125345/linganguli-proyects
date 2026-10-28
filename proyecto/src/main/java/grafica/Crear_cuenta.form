@@ -45,8 +45,8 @@
               <EmptySpace pref="39" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButtonAceptarCrear1" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTextfieldContrasena" pref="126" max="32767" attributes="0"/>
-                  <Component id="JTextFieldNombre" max="32767" attributes="0"/>
+                  <Component id="jTextFieldContrasena" pref="126" max="32767" attributes="0"/>
+                  <Component id="jTextFieldUsuario" max="32767" attributes="0"/>
                   <Component id="jTextFieldConfirmarContrasena" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="135" max="32767" attributes="0"/>
@@ -60,12 +60,12 @@
               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTextFieldNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTextfieldContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -85,7 +85,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre"/>
+        <Property name="text" type="java.lang.String" value="Usuario"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -98,12 +98,12 @@
         <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="JTextFieldNombre">
+    <Component class="javax.swing.JTextField" name="jTextFieldUsuario">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTextFieldNombreActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUsuarioActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="JTextfieldContrasena">
+    <Component class="javax.swing.JTextField" name="jTextFieldContrasena">
     </Component>
     <Component class="javax.swing.JButton" name="jButtonAceptarCrear1">
       <Properties>
