@@ -37,9 +37,7 @@ public class granprix extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldIdentificador = new javax.swing.JTextField();
         jTextFieldTemporada = new javax.swing.JTextField();
         jButtonAceptar1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -73,11 +71,7 @@ public class granprix extends javax.swing.JFrame {
 
         jLabel2.setText("Granprix");
 
-        jLabel3.setText("Identificador");
-
         jLabel4.setText("Temporada");
-
-        jTextFieldIdentificador.addActionListener(this::jTextFieldIdentificadorActionPerformed);
 
         jTextFieldTemporada.addActionListener(this::jTextFieldTemporadaActionPerformed);
 
@@ -89,11 +83,11 @@ public class granprix extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Fecha", "Nombre", "Identificador", "Temporada"
+                "Fecha", "Nombre", "Temporada"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -123,13 +117,11 @@ public class granprix extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4))
-                        .addGap(137, 137, 137)
+                        .addGap(143, 143, 143)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldIdentificador)
                             .addComponent(jTextFieldNombre)
                             .addComponent(jTextFieldFecha)
                             .addGroup(layout.createSequentialGroup()
@@ -160,14 +152,10 @@ public class granprix extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextFieldIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar1)
                     .addComponent(jButtonAtras2))
@@ -178,10 +166,6 @@ public class granprix extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdentificadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIdentificadorActionPerformed
 
     private void jTextFieldTemporadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTemporadaActionPerformed
         // TODO add your handling code here:
@@ -199,11 +183,10 @@ public class granprix extends javax.swing.JFrame {
             try {
                 String fecha = jTextFieldFecha.getText();
                 String nombre = jTextFieldNombre.getText();
-                int identificador = Integer.parseInt(jTextFieldIdentificador.getText());
                 String temporada = jTextFieldTemporada.getText();
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableGranprix.getModel();
-                tabla.addRow(new Object[]{fecha, nombre, identificador, temporada});
+                tabla.addRow(new Object[]{fecha, nombre, temporada});
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
@@ -256,7 +239,6 @@ public class granprix extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAtras2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -267,7 +249,6 @@ public class granprix extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextFieldFecha;
-    private javax.swing.JTextField jTextFieldIdentificador;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldTemporada;
     // End of variables declaration//GEN-END:variables

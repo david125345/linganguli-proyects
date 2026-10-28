@@ -34,12 +34,10 @@ public class Circuitos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldLargo = new javax.swing.JTextField();
         jTextFieldCantidadVueltas = new javax.swing.JTextField();
         jTextFieldPais = new javax.swing.JTextField();
-        jTextFieldIdentificador = new javax.swing.JTextField();
         jTextFieldNombre = new javax.swing.JTextField();
         jButtonAceptar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -55,13 +53,9 @@ public class Circuitos extends javax.swing.JFrame {
 
         jLabel3.setText("País");
 
-        jLabel4.setText("Identificador");
-
         jLabel5.setText("Nombre");
 
         jTextFieldLargo.addActionListener(this::jTextFieldLargoActionPerformed);
-
-        jTextFieldIdentificador.addActionListener(this::jTextFieldIdentificadorActionPerformed);
 
         jButtonAceptar1.setText("Aceptar");
         jButtonAceptar1.addActionListener(this::jButtonAceptar1ActionPerformed);
@@ -71,11 +65,11 @@ public class Circuitos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Largo", "Cantidad_Vueltas", "País", "ID", "Nombre"
+                "Largo", "Cantidad_Vueltas", "País", "Nombre"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -99,27 +93,19 @@ public class Circuitos extends javax.swing.JFrame {
                         .addGap(198, 198, 198)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(152, 152, 152)
+                                .addComponent(jTextFieldCantidadVueltas, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel1))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldPais, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldLargo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5))
-                                        .addGap(190, 190, 190))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldCantidadVueltas, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jTextFieldPais, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldLargo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jLabel6))
                 .addContainerGap(140, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -151,14 +137,10 @@ public class Circuitos extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar1)
                     .addComponent(jButtonAtras2))
@@ -183,11 +165,10 @@ public class Circuitos extends javax.swing.JFrame {
                 String largo = jTextFieldLargo.getText();
                 int cantidadVueltas = Integer.parseInt(jTextFieldCantidadVueltas.getText());
                 String pais = jTextFieldPais.getText();
-                int identificador = Integer.parseInt(jTextFieldIdentificador.getText());
                 String nombre = jTextFieldNombre.getText();
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableCircuitos.getModel();
-                tabla.addRow(new Object[]{largo, cantidadVueltas, pais, identificador, nombre});
+                tabla.addRow(new Object[]{largo, cantidadVueltas, pais, nombre});
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
@@ -198,10 +179,6 @@ public class Circuitos extends javax.swing.JFrame {
     private void jTextFieldLargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLargoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLargoActionPerformed
-
-    private void jTextFieldIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdentificadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIdentificadorActionPerformed
 
     private void jButtonAtras2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtras2ActionPerformed
         // TODO add your handling code here:
@@ -242,13 +219,11 @@ public class Circuitos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCircuitos;
     private javax.swing.JTextField jTextFieldCantidadVueltas;
-    private javax.swing.JTextField jTextFieldIdentificador;
     private javax.swing.JTextField jTextFieldLargo;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldPais;

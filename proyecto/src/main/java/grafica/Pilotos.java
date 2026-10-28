@@ -32,11 +32,9 @@ public class Pilotos extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldIdentificador = new javax.swing.JTextField();
         jTextFieldNombre = new javax.swing.JTextField();
         jTextFieldFechaNacimiento = new javax.swing.JTextField();
         jButtonAceptar1 = new javax.swing.JButton();
@@ -48,15 +46,11 @@ public class Pilotos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Identificador");
-
         jLabel2.setText("Fecha de Nacimiento");
 
         jLabel3.setText("Nombre");
 
         jLabel5.setText("Pilotos");
-
-        jTextFieldIdentificador.addActionListener(this::jTextFieldIdentificadorActionPerformed);
 
         jButtonAceptar1.setText("Aceptar");
         jButtonAceptar1.addActionListener(this::jButtonAceptar1ActionPerformed);
@@ -66,11 +60,11 @@ public class Pilotos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identificador", "Nombre", "Fecha de Nacimiento"
+                "Nombre", "Fecha de Nacimiento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -93,11 +87,9 @@ public class Pilotos extends javax.swing.JFrame {
                 .addGap(219, 219, 219)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel2))
                 .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldIdentificador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldFechaNacimiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -117,17 +109,13 @@ public class Pilotos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel5)
-                .addGap(93, 93, 93)
+                .addGap(121, 121, 121)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(12, 12, 12)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -152,14 +140,13 @@ public class Pilotos extends javax.swing.JFrame {
 
         } else {
             try {
-
-                int identificador = Integer.parseInt(jTextFieldIdentificador.getText());
+                
                 String nombre = jTextFieldNombre.getText();
                 String fechaNacimiento = jTextFieldFechaNacimiento.getText();
 
                 DefaultTableModel tabla = (DefaultTableModel) jTablePilotos.getModel();
 
-                tabla.addRow(new Object[]{identificador, nombre, fechaNacimiento});
+                tabla.addRow(new Object[]{nombre, fechaNacimiento});
 
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
@@ -173,10 +160,6 @@ public class Pilotos extends javax.swing.JFrame {
         mostrarVentanaOpciones.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonAtras2ActionPerformed
-
-    private void jTextFieldIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdentificadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldIdentificadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,7 +189,6 @@ public class Pilotos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar1;
     private javax.swing.JButton jButtonAtras2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -214,7 +196,6 @@ public class Pilotos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePilotos;
     private javax.swing.JTextField jTextFieldFechaNacimiento;
-    private javax.swing.JTextField jTextFieldIdentificador;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }
