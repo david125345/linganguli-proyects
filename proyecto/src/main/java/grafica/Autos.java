@@ -6,6 +6,8 @@ package grafica;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import logica.F1app;
 
 /**
  *
@@ -159,6 +161,8 @@ public class Autos extends javax.swing.JFrame {
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
                 tabla.addRow(new Object[]{escuderia, modelo, identificador});
+                 F1app F1 = F1app.getInstance();
+                  F1.Insertintodatabase("auto", modelo, modelo);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
@@ -176,6 +180,8 @@ public class Autos extends javax.swing.JFrame {
 
     private void jComboBoxEscuderiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscuderiaActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_jComboBoxEscuderiaActionPerformed
 
     /**
@@ -201,6 +207,8 @@ public class Autos extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Autos().setVisible(true));
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

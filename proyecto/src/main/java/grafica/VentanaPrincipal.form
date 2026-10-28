@@ -41,16 +41,10 @@
               <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="314" max="-2" attributes="0"/>
-                      <Component id="JButtonAceptar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BotonVolver" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
+              <Component id="BotonVolver" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Component id="JButtonAceptar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -58,9 +52,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BotonVolver" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="128" max="32767" attributes="0"/>
+              <EmptySpace pref="157" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JTextFieldUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="LabelUsuario" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
@@ -71,7 +63,10 @@
                   <Component id="JTextFieldContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="JButtonAceptar" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JButtonAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BotonVolver" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
           </Group>
       </Group>

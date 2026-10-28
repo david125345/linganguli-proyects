@@ -2,7 +2,6 @@ package logica;
 
 import java.sql.Connection;
 import java.util.Date;
-
 import sql.Sqlconector;
 
 /**

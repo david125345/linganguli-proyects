@@ -37,6 +37,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jMenuPilotos = new javax.swing.JMenu();
         jMenuCircuitos = new javax.swing.JMenu();
         jMenuAutos = new javax.swing.JMenu();
+        jMenuEscuderia1 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -90,6 +91,15 @@ public class VentanaOpciones extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenuAutos);
 
+        jMenuEscuderia1.setText("Escuderias");
+        jMenuEscuderia1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuEscuderia1MouseClicked(evt);
+            }
+        });
+        jMenuEscuderia1.addActionListener(this::jMenuEscuderia1ActionPerformed);
+        jMenuBar1.add(jMenuEscuderia1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,6 +116,11 @@ public class VentanaOpciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+ 
+    
+    
+    
+    
     private void JMenuGranprixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuGranprixActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JMenuGranprixActionPerformed
@@ -153,6 +168,23 @@ public class VentanaOpciones extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuAutosMouseClicked
 
+    private void jMenuEscuderia1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuEscuderia1MouseClicked
+        // TODO add your handling code here:
+        Escuderias mostrarEscuderias = new Escuderias();
+        mostrarEscuderias.setVisible(true);
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_jMenuEscuderia1MouseClicked
+
+   
+    private void jMenuEscuderia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEscuderia1ActionPerformed
+        // TODO add your handling code here:
+      
+   
+
+    }//GEN-LAST:event_jMenuEscuderia1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -178,11 +210,14 @@ public class VentanaOpciones extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new VentanaOpciones().setVisible(true));
     }
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JMenuGranprix;
     private javax.swing.JMenu jMenuAutos;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCircuitos;
+    private javax.swing.JMenu jMenuEscuderia1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jMenuPilotos;
