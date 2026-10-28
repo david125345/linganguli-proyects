@@ -74,7 +74,7 @@ public class consultar extends javax.swing.JFrame {
 
     private void jButtonSi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSi1ActionPerformed
         // TODO add your handling code here:
-        VentanaPrincipal mostrarVentanaprincipal = new VentanaPrincipal();
+        Login mostrarVentanaprincipal = new Login();
         mostrarVentanaprincipal.setVisible(true);
 
         this.setVisible(false);
