@@ -2,6 +2,7 @@ package logica;
 
 import java.sql.Connection;
 import java.util.Date;
+
 import sql.Sqlconector;
 
 /**
@@ -168,7 +169,7 @@ public class F1app {
 
     public int loginuserdatabase(String usuario, String clave) {
         if (Sqlconector.login(usuario, clave)) {
-            String bombo = Sqlconector.Consultar("isadmin", "usuario")[0];
+            String bombo = Sqlconector.Consultar("isadmin", "usuario WHERE nombre = '" + usuario + "'")[0];
             if (bombo != null && bombo.equals("1:")) {
                 return 2;
             }

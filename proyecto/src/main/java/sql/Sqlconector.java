@@ -82,8 +82,8 @@ public class Sqlconector {
     // datosabuscar es separado con una coma, para simplificar el codigo y hacer posible buscar cualquier cosa.
     // Muy orgulloso de esta función a pesar de ser O(n²) y no O(log n), pero es lo que hay.
 	public static String[] Consultar(String datosabuscar, String tabla) {
-        String[] datos = new String[datosabuscar.split(",").length];
-		try {
+		String[] datos = null;
+        try {
             String sql = "SELECT ? FROM " + tabla;
 		    Connection sqlbomboclat = realizarConexion();
 		    PreparedStatement ps = sqlbomboclat.prepareStatement(sql);
@@ -92,6 +92,7 @@ public class Sqlconector {
             String[] valores = datosabuscar.split(",");
             String cosas = "";
             int iteration = 0;
+            datos = new String[rs.getFetchSize() + 1];
 		    while (rs.next()) {
                 for (String valor : valores) {
                     cosas += rs.getString(valor) + ":";
