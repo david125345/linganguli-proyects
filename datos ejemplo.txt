@@ -1,0 +1,103 @@
+USE Formula1;
+
+SET FOREIGN_KEY_CHECKS = 0;
+GRANT ALL PRIVILEGES ON formula1.* TO 'rooy'@'localhost';
+INSERT INTO usuario (nombre, clave, isadmin) VALUES
+('admin_rooy', 'hashed_pass_1', 1),
+('carlos_f1', 'hashed_pass_2', 0),
+('lucia_racing', 'hashed_pass_3', 0),
+('marcos_speed', 'hashed_pass_4', 0),
+('sofia_ferrari', 'hashed_pass_5', 0);
+
+INSERT INTO TEMPORADA (año_temporada) VALUES
+(2022),
+(2023),
+(2024),
+(2025),
+(2026);
+
+INSERT INTO CIRCUITO (nombre, pais, longitud, nro_vueltas) VALUES
+('Autodromo Nazionale Monza', 'Italia', 5793, 53),
+('Circuit de Monaco', 'Monaco', 3337, 78),
+('Silverstone Circuit', 'Reino Unido', 5891, 52),
+('Circuit de Spa-Francorchamps', 'Belgica', 7004, 44),
+('Autodromo Hermanos Rodriguez', 'Mexico', 4304, 71);
+
+INSERT INTO GRANDPRIX (nombre, Fecha, ID_temporada) VALUES
+('Gran Premio de Italia', '2026-09-06', 5),
+('Gran Premio de Monaco', '2026-05-24', 5),
+('Gran Premio de Gran Bretaña', '2026-07-05', 5),
+('Gran Premio de Belgica', '2026-08-30', 5),
+('Gran Premio de Mexico', '2026-10-25', 5);
+
+INSERT INTO ESCUDERIA (nombre) VALUES
+('Scuderia Ferrari'),
+('Mercedes-AMG Petronas'),
+('Red Bull Racing'),
+('McLaren F1 Team'),
+('Aston Martin Aramco');
+
+INSERT INTO AUTO (Modelo, año_fabricacion, ID_escuderia) VALUES
+('SF-26', 2026, 1),
+('W17', 2026, 2),
+('RB22', 2026, 3),
+('MCL40', 2026, 4),
+('AMR26', 2026, 5);
+
+INSERT INTO PROVEEDORES (nombre) VALUES
+('Mercedes Powertrains'),
+('Ferrari Engine Dept'),
+('Honda Racing'),
+('Puma Official'),
+('Alpinestars Motorsport');
+
+INSERT INTO PROV_MOTORES (ID_proveedores, nombre) VALUES
+(1, 'Mercedes Powertrains'),
+(2, 'Ferrari Engine Dept'),
+(3, 'Honda Racing'),
+(4, 'Proveedor Motor Aux 1'),
+(5, 'Proveedor Motor Aux 2');
+
+INSERT INTO PROV_INDUMENTARIA (ID_proveedor, nombre) VALUES
+(1, 'Indumentaria Proveedor 1'),
+(2, 'Indumentaria Proveedor 2'),
+(3, 'Indumentaria Proveedor 3'),
+(4, 'Puma Official'),
+(5, 'Alpinestars Motorsport');
+
+INSERT INTO PILOTO (nombre, nacionalidad, fecha_nacimiento, ID_proveedor_indumentaria) VALUES
+('Charles Leclerc', 'Monagasca', '1997-10-16', 1),
+('Lewis Hamilton', 'Britanica', '1985-01-07', 2),
+('Max Verstappen', 'Neerlandesa', '1997-09-30', 3),
+('Lando Norris', 'Britanica', '1999-11-13', 4),
+('Fernando Alonso', 'Espaniola', '1981-07-29', 5);
+
+INSERT INTO TIENE (ID_piloto, ID_temporada, nro_competidor) VALUES
+(1, 5, 16),
+(2, 5, 44),
+(3, 5, 1),
+(4, 5, 4),
+(5, 5, 14);
+
+INSERT INTO RESULTADO (ID_piloto, ID_auto, ID_gp, posición, cant_vueltas, puntos) VALUES
+(1, 1, 1, 1, 53, 25.00),
+(2, 2, 2, 2, 78, 18.00),
+(3, 3, 3, 3, 52, 15.00),
+(4, 4, 4, 4, 44, 12.00),
+(5, 5, 5, 5, 71, 10.00);
+
+INSERT INTO TIEMPO_VUELTAS (tiempo, id_piloto) VALUES
+('01:21.543', 1),
+('01:12.981', 2),
+('01:28.102', 3),
+('01:44.225', 4),
+('01:17.654', 5);
+
+INSERT INTO SUMINISTRA (ID_proveedor, ID_escuderia, nro_chasis) VALUES
+(1, 1, 'CHS-MER-2026-01'),
+(2, 2, 'CHS-FER-2026-02'),
+(3, 3, 'CHS-HON-2026-03'),
+(4, 4, 'CHS-MCL-2026-04'),
+(5, 5, 'CHS-AST-2026-05');
+
+SET FOREIGN_KEY_CHECKS = 1;

@@ -38,7 +38,7 @@ CREATE TABLE CIRCUITO (
     ID_circuito INT AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     pais VARCHAR(50) NOT NULL,
-    longitud DECIMAL(6, 3) NOT NULL,
+    longitud INT NOT NULL, --metros weon
     nro_vueltas INT NOT NULL,
     PRIMARY KEY (ID_circuito)
 );
