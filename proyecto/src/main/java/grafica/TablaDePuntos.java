@@ -6,7 +6,7 @@ package grafica;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import logica.F1app;
 /**
  *
  * @author dasangu
@@ -246,6 +246,10 @@ public class TablaDePuntos extends javax.swing.JPanel {
                 String tiempoVueltas = jTextFieldTiempoVueltas.getText();
                 int puntos = Integer.parseInt(jTextFieldPuntos.getText());
 
+                F1app f1 = F1app.getInstance();
+
+                
+                
                 DefaultTableModel tabla = (DefaultTableModel) jTableTablaPuntos.getModel();
                 tabla.addRow(new Object[]{piloto, auto, granprix, posicion, cantidadVueltas, tiempoVueltas, puntos
                 }
