@@ -147,11 +147,15 @@ public class Autos extends javax.swing.JFrame {
             try {
                 String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
                 String modelo = jTextFieldModelo.getText();
+                F1app F1v2 = F1app.getInstance();
+                System.out.println(F1v2.Consultardatabase("id_escuderias", "ESCUDERIA"));
+                //para terminar debido a problemas obteniendo la id de la escuderia
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
                 tabla.addRow(new Object[]{escuderia, modelo});
                  F1app F1 = F1app.getInstance();
-                  F1.Insertintodatabase("auto", modelo, modelo);
+                  F1.Insertintodatabase("auto", "modelo", modelo);
+                  F1.Insertintodatabase("auto", "escuderia", escuderia);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }

@@ -116,7 +116,7 @@ public class Login extends javax.swing.JFrame {
 
         F1app f1 = F1app.getInstance();
 
-        switch (f1.loginuserdatabase(usuario, contrasena)){
+        switch (f1.loginuserdatabase(usuario, contrasena)) {
             case 0:
                 JOptionPane.showMessageDialog(null, "Inicio de sesion fallido, compruebe el usuario o la contraseña");
                 break;
@@ -125,7 +125,6 @@ public class Login extends javax.swing.JFrame {
                 mostrarResultados.setVisible(true);
                 this.setVisible(false);
                 break;
-
             case 2:
                 VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
                 mostrarVentanaOpciones.setVisible(true);

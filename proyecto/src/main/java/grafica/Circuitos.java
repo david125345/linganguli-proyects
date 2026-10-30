@@ -6,6 +6,7 @@ package grafica;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logica.F1app;
 
 /**
  *
@@ -163,10 +164,16 @@ public class Circuitos extends javax.swing.JFrame {
 
             try {
                 String largo = jTextFieldLargo.getText();
-                int cantidadVueltas = Integer.parseInt(jTextFieldCantidadVueltas.getText());
+                String cantidadVueltas = jTextFieldCantidadVueltas.getText();
                 String pais = jTextFieldPais.getText();
                 String nombre = jTextFieldNombre.getText();
-
+                
+                F1app F1 = F1app.getInstance();
+                F1.Insertintodatabase ("circuito", "longitud", largo);
+                F1.Insertintodatabase ("circuito", "nro_vueltas", cantidadVueltas);
+                F1.Insertintodatabase ("circuito", "pais", pais);
+                F1.Insertintodatabase("circuito", "nombre", nombre);
+                
                 DefaultTableModel tabla = (DefaultTableModel) jTableCircuitos.getModel();
                 tabla.addRow(new Object[]{largo, cantidadVueltas, pais, nombre});
             } catch (NumberFormatException e) {

@@ -6,7 +6,7 @@ package grafica;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import logica.F1app;
 /**
  *
  * @author dasangu
@@ -145,6 +145,11 @@ public class Pilotos extends javax.swing.JFrame {
                 String fechaNacimiento = jTextFieldFechaNacimiento.getText();
 
                 DefaultTableModel tabla = (DefaultTableModel) jTablePilotos.getModel();
+
+                F1app F1 = F1app.getInstance();
+                
+                F1.Insertintodatabase ("piloto", "nombre", nombre);
+                F1.Insertintodatabase ("piloto", "fecha_nacimiento", fechaNacimiento);
 
                 tabla.addRow(new Object[]{nombre, fechaNacimiento});
 
