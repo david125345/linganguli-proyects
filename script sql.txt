@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS PROV_INDUMENTARIA;
 DROP TABLE IF EXISTS PROV_MOTORES;
 DROP TABLE IF EXISTS PROVEEDORES;
 DROP TABLE IF EXISTS usuario;
+DROP USER IF EXISTS rooy@'localhost';
 
 CREATE TABLE usuario (
     nombre Varchar(20) NOT NULL,
@@ -135,7 +136,6 @@ CREATE TABLE SUMINISTRA (
     FOREIGN KEY (ID_escuderia) REFERENCES ESCUDERIA (ID_escuderia)
 );
 
-CREATE USER 'rooy'@'localhost' IDENTIFIED BY 'esoquesentischocandocontratucola';
-GRANT ALL PRIVILEGES ON Formula1.* TO 'rooy'@'localhost';
+CREATE USER 'rooy'@'localhost' IDENTIFIED BY 'bomboclat';
 
 SET FOREIGN_KEY_CHECKS = 1;

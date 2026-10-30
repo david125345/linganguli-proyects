@@ -84,10 +84,9 @@ public class Sqlconector {
 	public static String[] Consultar(String datosabuscar, String tabla) {
 		String[] datos = null;
         try {
-            String sql = "SELECT ? FROM " + tabla;
+            String sql = "SELECT " + datosabuscar + " FROM " + tabla;
 		    Connection sqlbomboclat = realizarConexion();
-		    PreparedStatement ps = sqlbomboclat.prepareStatement(sql);
-		    ps.setString(1, datosabuscar);    
+		    PreparedStatement ps = sqlbomboclat.prepareStatement(sql);  
 		    ResultSet rs = ps.executeQuery();
             String[] valores = datosabuscar.split(",");
             String cosas = "";
@@ -103,6 +102,7 @@ public class Sqlconector {
 		} catch (SQLException ex) {
 		System.out.println("Error con la sentencia MYSQL: " + ex);
 		}
+        System.out.println(datos[0]);
 		return datos;
 	}
 	

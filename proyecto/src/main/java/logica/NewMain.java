@@ -13,7 +13,7 @@ import grafica.consultar;
 public class NewMain {
     public static void main(String[] args) {
         F1app F1 = F1app.getInstance();
-        F1.realizarprimeraconexiondatabase("jdbc:mysql://localhost:3306/formula1", "rooy", "esoquesentischocandocontratucola");
+        F1.realizarprimeraconexiondatabase("jdbc:mysql://localhost:3306/formula1", "rooy", "bomboclat");
         java.awt.EventQueue.invokeLater(() -> {
             new consultar().setVisible(true);
         });
