@@ -3,11 +3,11 @@ USE Formula1;
 SET FOREIGN_KEY_CHECKS = 0;
 GRANT ALL PRIVILEGES ON formula1.* TO 'rooy'@'localhost';
 INSERT INTO usuario (nombre, clave, isadmin) VALUES
-('admin_rooy', 'hashed_pass_1', 1),
-('carlos_f1', 'hashed_pass_2', 0),
-('lucia_racing', 'hashed_pass_3', 0),
-('marcos_speed', 'hashed_pass_4', 0),
-('sofia_ferrari', 'hashed_pass_5', 0);
+('jane', '774d366fd9880a6ce2e6fc54e46dd4f7957b029b7c560ca186bbfd94c2d57410021d15368fa4fda78ecd1334f808ea54c197e72f93f72cbd0c027285ad41c3ea', 1),
+('john', '69b3cac7b8302024633dbcbc7a150c39f881597a16c0913f166e666e3daa0fd75cb6d6accc37f9d5118cfef16aba6dcdb3cccd61dad73569e017ee14292b1dcc', 1),
+('lucia_racing', 'hashed_pass_3', NULL),
+('marcos_speed', 'hashed_pass_4', NULL),
+('sofia_ferrari', 'hashed_pass_5', NULL);
 
 INSERT INTO TEMPORADA (año_temporada) VALUES
 (2022),
