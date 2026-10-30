@@ -67,10 +67,9 @@ public class Sqlconector {
 	}
 	public static void EjecutarSentencia (String tabla, String datosainsertar, String valores) {
 		try {
-            String sql = "INSERT INTO " + tabla +  " (" + datosainsertar + ") VALUES (?)";
+            String sql = "INSERT INTO " + tabla +  " (" + datosainsertar + ") VALUES ("+ valores +")";
             Connection sqlbomboclat = realizarConexion();
             PreparedStatement ps = sqlbomboclat.prepareStatement(sql);
-            ps.setString(1, valores);
             ps.executeUpdate();
 		} catch (SQLException ex) {
         System.out.println("Error con la sentencia MYSQL: " + ex);

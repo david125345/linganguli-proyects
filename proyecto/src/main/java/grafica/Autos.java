@@ -44,6 +44,11 @@ public class Autos extends javax.swing.JFrame {
         jButtonAtras2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setText("Modelo");
 
@@ -147,15 +152,17 @@ public class Autos extends javax.swing.JFrame {
             try {
                 String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
                 String modelo = jTextFieldModelo.getText();
+                String valores = "'" + escuderia + "' , '" + modelo + "'";
+                
                 F1app F1v2 = F1app.getInstance();
                 System.out.println(F1v2.Consultardatabase("id_escuderias", "ESCUDERIA"));
                 //para terminar debido a problemas obteniendo la id de la escuderia
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
                 tabla.addRow(new Object[]{escuderia, modelo});
-                 F1app F1 = F1app.getInstance();
-                  F1.Insertintodatabase("auto", "modelo", modelo);
-                  F1.Insertintodatabase("auto", "escuderia", escuderia);
+                F1app F1 = F1app.getInstance();
+                F1.Insertintodatabase("auto", "modelo", modelo);
+                F1.Insertintodatabase("auto", "escuderia", escuderia);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
@@ -173,9 +180,22 @@ public class Autos extends javax.swing.JFrame {
 
     private void jComboBoxEscuderiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscuderiaActionPerformed
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_jComboBoxEscuderiaActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
+        String modelo = jTextFieldModelo.getText();
+        F1app f1 = F1app.getInstance();
+        f1.Consultardatabase("modelo", "auto");
+        f1.Consultardatabase("nombre", "escuderia");
+        DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
+        tabla.addRow(new Object[]{escuderia, modelo});
+
+
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -200,8 +220,7 @@ public class Autos extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Autos().setVisible(true));
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
