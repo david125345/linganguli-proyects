@@ -7,6 +7,7 @@ package grafica;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.F1app;
+
 /**
  *
  * @author dasangu
@@ -161,18 +162,18 @@ public class Pilotos extends javax.swing.JFrame {
 
         } else {
             try {
-                
-                String nombre = jTextFieldNombre.getText();
-                String nacionalidad = jTextFieldNombre.getText();
-                String fechaNacimiento = jTextFieldFechaNacimiento.getText();
 
+                String nombre = jTextFieldNombre.getText();
+                String nacionalidad = jTextFieldNacionalidad.getText();
+                //pendiende implementacion para forzar el formateo de la fecha ej, 2017-6-15/yyyy-m-d
+                String fechaNacimiento = jTextFieldFechaNacimiento.getText();
+                String valores = "'" + nombre + "' , '" + nacionalidad + "' , '" + fechaNacimiento + "'";
+                
                 DefaultTableModel tabla = (DefaultTableModel) jTablePilotos.getModel();
 
                 F1app F1 = F1app.getInstance();
-                
-                F1.Insertintodatabase ("piloto", "nombre", nombre);
-                F1.Insertintodatabase ("piloto", "nacionalidad", nacionalidad);
-                F1.Insertintodatabase ("piloto", "fecha_nacimiento", fechaNacimiento);
+
+                F1.Insertintodatabase("piloto", "nombre, nacionalidad, fecha_nacimiento", valores);
 
                 tabla.addRow(new Object[]{nombre, nacionalidad, fechaNacimiento});
 

@@ -174,14 +174,12 @@ public class Escuderias extends javax.swing.JFrame {
 
             try {
                 String nombre = jTextFieldNombre.getText();
-
+                String valor = "'" + nombre + "'";
+                
                 F1app f1 = F1app.getInstance();
-                f1.Insertintodatabase("escuderia", "nombre", nombre);
+                f1.Insertintodatabase("escuderia", "nombre", valor);
+                
                 DefaultTableModel tabla = (DefaultTableModel) jTableEscuderia.getModel();
-                
-                
-                
-                
                 tabla.addRow(new Object[]{nombre});
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");

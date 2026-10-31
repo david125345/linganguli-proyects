@@ -7,6 +7,7 @@ package grafica;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.F1app;
+
 /**
  *
  * @author dasangu
@@ -186,12 +187,13 @@ public class granprix extends javax.swing.JFrame {
                 String temporada = jTextFieldTemporada.getText();
 
                 F1app F1 = F1app.getInstance();
-                F1.Insertintodatabase("grandprix", "fecha", fecha);
-                F1.Insertintodatabase("grandprix", "nombre", nombre);
-                //la tabla grandprix pide la id de la temporada
+
+                String ID_temporada = F1.Consultardatabase("ID_temporada", "temporada WHERE año_temporada = " + temporada)[0].replace(":", "");
+                String valores = "'" + fecha + "' , '" + nombre + "' , '" + ID_temporada + "'";
                 
-                F1.Insertintodatabase("grandprix", "temporada", temporada);
-                
+                F1.Insertintodatabase("grandprix", "fecha, nombre, ID_temporada ", valores);
+
+
                 DefaultTableModel tabla = (DefaultTableModel) jTableGranprix.getModel();
                 tabla.addRow(new Object[]{fecha, nombre, temporada});
             } catch (NumberFormatException e) {

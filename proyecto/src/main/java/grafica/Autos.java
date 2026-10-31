@@ -77,7 +77,8 @@ public class Autos extends javax.swing.JFrame {
 
         jLabel3.setText("Escuderia");
 
-        jComboBoxEscuderia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        //acá se implementan los objetos al combo box
+        //se realizan request a la base de datos para pre cargar los valores
         jComboBoxEscuderia.addActionListener(this::jComboBoxEscuderiaActionPerformed);
 
         jLabel4.setText("Autos");
@@ -106,11 +107,10 @@ public class Autos extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jButtonAtras2)
                                         .addGap(18, 18, 18)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButtonAceptar1)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextFieldModelo)
-                                        .addComponent(jComboBoxEscuderia, 0, 175, Short.MAX_VALUE)))))))
+                                    .addComponent(jTextFieldModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxEscuderia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,26 +143,28 @@ public class Autos extends javax.swing.JFrame {
 
     private void jButtonAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptar1ActionPerformed
         // TODO add your handling code here:
-        if (jTextFieldModelo.getText().trim().isEmpty() == true) {
-
+        if (jTextFieldModelo.getText().trim().isEmpty() == true || jComboBoxEscuderia.getItemCount() == 0 ) {
+        //implementar condicion para que tenga que existir una escuderia que no sea por defecto
             JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
 
         } else {
 
             try {
+                //pendiente implementar valores al combobox de escuderia 
                 String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
                 String modelo = jTextFieldModelo.getText();
-                String valores = "'" + escuderia + "' , '" + modelo + "'";
-                
-                F1app F1v2 = F1app.getInstance();
-                System.out.println(F1v2.Consultardatabase("id_escuderias", "ESCUDERIA"));
+                String valores = "'" + modelo + "' , '" + escuderia + "'";
+
                 //para terminar debido a problemas obteniendo la id de la escuderia
+                
+                F1app F1 = F1app.getInstance();
+                F1.Insertintodatabase("auto", "modelo, escuderia", valores);
+
+                String ID_escuderia = F1.Consultardatabase("ID_escuderia", "escuderia WHERE año_temporada = " + escuderia)[0].replace(":", "");
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
                 tabla.addRow(new Object[]{escuderia, modelo});
-                F1app F1 = F1app.getInstance();
-                F1.Insertintodatabase("auto", "modelo", modelo);
-                F1.Insertintodatabase("auto", "escuderia", escuderia);
+
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
@@ -186,14 +188,15 @@ public class Autos extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
+      /*  String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
         String modelo = jTextFieldModelo.getText();
         F1app f1 = F1app.getInstance();
         f1.Consultardatabase("modelo", "auto");
         f1.Consultardatabase("nombre", "escuderia");
+
         DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
         tabla.addRow(new Object[]{escuderia, modelo});
-
+*/
 
     }//GEN-LAST:event_formWindowActivated
 
