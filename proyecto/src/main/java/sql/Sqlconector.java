@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HexFormat;
 
 import org.kocakosm.jblake2.Blake2b;
@@ -77,9 +78,7 @@ public class Sqlconector {
 	}
 	
     // datosabuscar es separado con una coma, para simplificar el codigo y hacer posible buscar cualquier cosa.
-    // Muy orgulloso de esta función a pesar de ser O(n²) y no O(log n), pero es lo que hay.
 	public static String[] Consultar(String datosabuscar, String tabla) {
-		String[] datos = null;
         try {
             String sql = "SELECT " + datosabuscar + " FROM " + tabla;
 		    Connection sqlbomboclat = realizarConexion();
@@ -88,19 +87,23 @@ public class Sqlconector {
             String[] valores = datosabuscar.split(",");
             String cosas = "";
             int iteration = 0;
-            datos = new String[rs.getFetchSize() + 1];
+            ArrayList<String> datosList = new ArrayList<>();
 		    while (rs.next()) {
                 for (String valor : valores) {
                     cosas += rs.getString(valor) + ":";
                 }
-                datos[iteration] = cosas;
+                datosList.add(cosas);
                 iteration++;
             }
+            String[] datos = new String[datosList.size()];
+            for (int i = 0; i < datosList.size(); i++) {
+                datos[i] = datosList.get(i);
+            }
+            return datos;
 		} catch (SQLException ex) {
 		System.out.println("Error con la sentencia MYSQL: " + ex);
 		}
-        System.out.println(datos[0]);
-		return datos;
+		return null;
 	}
 	
 
