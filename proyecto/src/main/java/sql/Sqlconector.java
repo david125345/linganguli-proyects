@@ -89,6 +89,7 @@ public class Sqlconector {
             int iteration = 0;
             ArrayList<String> datosList = new ArrayList<>();
 		    while (rs.next()) {
+                cosas = "";
                 for (String valor : valores) {
                     cosas += rs.getString(valor) + ":";
                 }
