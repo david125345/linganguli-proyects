@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import logica.F1app;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 /**
  *
@@ -143,8 +144,8 @@ public class Autos extends javax.swing.JFrame {
 
     private void jButtonAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptar1ActionPerformed
         // TODO add your handling code here:
-        if (jTextFieldModelo.getText().trim().isEmpty() == true || jComboBoxEscuderia.getItemCount() == 0 ) {
-        //implementar condicion para que tenga que existir una escuderia que no sea por defecto
+        if (jTextFieldModelo.getText().trim().isEmpty() == true || jComboBoxEscuderia.getItemCount() == 0) {
+            //implementar condicion para que tenga que existir una escuderia que no sea por defecto
             JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
 
         } else {
@@ -156,7 +157,6 @@ public class Autos extends javax.swing.JFrame {
                 String valores = "'" + modelo + "' , '" + escuderia + "'";
 
                 //para terminar debido a problemas obteniendo la id de la escuderia
-                
                 F1app F1 = F1app.getInstance();
                 F1.Insertintodatabase("auto", "modelo, escuderia", valores);
 
@@ -188,15 +188,21 @@ public class Autos extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-      /*  String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
-        String modelo = jTextFieldModelo.getText();
         F1app f1 = F1app.getInstance();
-        f1.Consultardatabase("modelo", "auto");
-        f1.Consultardatabase("nombre", "escuderia");
+        jComboBoxEscuderia.removeAllItems();
+
+        String[] escuderias = f1.Consultardatabase("nombre", "escuderia");
+        for (String escuderia : escuderias) {
+            System.out.println("se devolvio " + escuderia);
+            jComboBoxEscuderia.addItem(escuderia);
+        }
+
+        String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
+        String modelo = jTextFieldModelo.getText();
 
         DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
         tabla.addRow(new Object[]{escuderia, modelo});
-*/
+
 
     }//GEN-LAST:event_formWindowActivated
 
