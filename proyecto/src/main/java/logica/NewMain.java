@@ -5,6 +5,9 @@
 package logica;
 
 import grafica.consultar;
+import com.formdev.flatlaf.FlatDarkLaf;
+import javax.swing.SwingUtilities;
+
 
 /**
  *
@@ -14,6 +17,7 @@ public class NewMain {
     public static void main(String[] args) {
         F1app F1 = F1app.getInstance();
         F1.realizarprimeraconexiondatabase("jdbc:mysql://localhost:3306/formula1", "rooy", "bomboclat");
+        FlatDarkLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             new consultar().setVisible(true);
         });
