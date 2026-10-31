@@ -167,12 +167,10 @@ public class Circuitos extends javax.swing.JFrame {
                 String cantidadVueltas = jTextFieldCantidadVueltas.getText();
                 String pais = jTextFieldPais.getText();
                 String nombre = jTextFieldNombre.getText();
+                String valores = "'" + largo + "' , '" + cantidadVueltas + "' , '" + pais + "' , '" + nombre + "'";
                 
                 F1app F1 = F1app.getInstance();
-                F1.Insertintodatabase ("circuito", "longitud", largo);
-                F1.Insertintodatabase ("circuito", "nro_vueltas", cantidadVueltas);
-                F1.Insertintodatabase ("circuito", "pais", pais);
-                F1.Insertintodatabase ("circuito", "nombre", nombre);
+                F1.Insertintodatabase ("circuito", "longitud, nro_vueltas, pais, nombre", valores);
                 
                 DefaultTableModel tabla = (DefaultTableModel) jTableCircuitos.getModel();
                 tabla.addRow(new Object[]{largo, cantidadVueltas, pais, nombre});

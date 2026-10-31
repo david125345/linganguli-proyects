@@ -7,6 +7,7 @@ package grafica;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.F1app;
+
 /**
  *
  * @author dasangu
@@ -41,6 +42,8 @@ public class Pilotos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePilotos = new javax.swing.JTable();
         jButtonAtras2 = new javax.swing.JButton();
+        jTextFieldNacionalidad = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         jLabel4.setText("Proveedor");
 
@@ -60,11 +63,11 @@ public class Pilotos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Fecha de Nacimiento"
+                "Nombre", "Nacionalidad", "Fecha de Nacimiento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -72,9 +75,16 @@ public class Pilotos extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTablePilotos);
+        if (jTablePilotos.getColumnModel().getColumnCount() > 0) {
+            jTablePilotos.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jButtonAtras2.setText("Atrás");
         jButtonAtras2.addActionListener(this::jButtonAtras2ActionPerformed);
+
+        jTextFieldNacionalidad.addActionListener(this::jTextFieldNacionalidadActionPerformed);
+
+        jLabel1.setText("Nacionalidad");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,16 +93,6 @@ public class Pilotos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldFechaNacimiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(151, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,21 +104,43 @@ public class Pilotos extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(jButtonAceptar1)
                         .addGap(225, 225, 225))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(219, 219, 219)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addComponent(jTextFieldFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(121, 121, 121)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar1)
@@ -140,18 +162,20 @@ public class Pilotos extends javax.swing.JFrame {
 
         } else {
             try {
-                
-                String nombre = jTextFieldNombre.getText();
-                String fechaNacimiento = jTextFieldFechaNacimiento.getText();
 
+                String nombre = jTextFieldNombre.getText();
+                String nacionalidad = jTextFieldNacionalidad.getText();
+                //pendiende implementacion para forzar el formateo de la fecha ej, 2017-6-15/yyyy-m-d
+                String fechaNacimiento = jTextFieldFechaNacimiento.getText();
+                String valores = "'" + nombre + "' , '" + nacionalidad + "' , '" + fechaNacimiento + "'";
+                
                 DefaultTableModel tabla = (DefaultTableModel) jTablePilotos.getModel();
 
                 F1app F1 = F1app.getInstance();
-                
-                F1.Insertintodatabase ("piloto", "nombre", nombre);
-                F1.Insertintodatabase ("piloto", "fecha_nacimiento", fechaNacimiento);
 
-                tabla.addRow(new Object[]{nombre, fechaNacimiento});
+                F1.Insertintodatabase("piloto", "nombre, nacionalidad, fecha_nacimiento", valores);
+
+                tabla.addRow(new Object[]{nombre, nacionalidad, fechaNacimiento});
 
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
@@ -165,6 +189,10 @@ public class Pilotos extends javax.swing.JFrame {
         mostrarVentanaOpciones.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonAtras2ActionPerformed
+
+    private void jTextFieldNacionalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNacionalidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNacionalidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +222,7 @@ public class Pilotos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar1;
     private javax.swing.JButton jButtonAtras2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -201,6 +230,7 @@ public class Pilotos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePilotos;
     private javax.swing.JTextField jTextFieldFechaNacimiento;
+    private javax.swing.JTextField jTextFieldNacionalidad;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }

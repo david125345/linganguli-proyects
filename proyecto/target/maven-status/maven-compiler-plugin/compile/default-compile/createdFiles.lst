@@ -7,6 +7,7 @@ grafica\TablaDePuntos$1.class
 logica\Auto.class
 logica\Proveedores.class
 logica\Proveedor.class
+grafica\Autos$2.class
 logica\Circuitos.class
 logica\Resultados.class
 grafica\Crear_cuenta.class

@@ -7,6 +7,7 @@ package grafica;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.F1app;
+
 /**
  *
  * @author dasangu
@@ -70,15 +71,11 @@ public class TablaDePuntos extends javax.swing.JPanel {
 
         jLabel2.setText("Piloto");
 
-        jComboBoxPiloto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel3.setText("Auto");
 
         jLabel4.setText("Granprix");
 
-        jComboBoxAuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxGranprix.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxAuto.addActionListener(this::jComboBoxAutoActionPerformed);
 
         jLabel5.setText("Posición");
 
@@ -132,28 +129,6 @@ public class TablaDePuntos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(242, 242, 242)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxGranprix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(86, 86, 86)
-                        .addComponent(jTextFieldPuntos))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jTextFieldTiempoVueltas))
-                            .addComponent(jTextFieldCantidadVueltas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -169,8 +144,27 @@ public class TablaDePuntos extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonAtras2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonAceptar1)))))
-                .addGap(149, 241, Short.MAX_VALUE))
+                                .addComponent(jButtonAceptar1))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBoxGranprix, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldTiempoVueltas, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                .addComponent(jTextFieldCantidadVueltas)))))
+                .addGap(149, 234, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,10 +179,10 @@ public class TablaDePuntos extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jComboBoxAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jComboBoxGranprix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -198,15 +192,14 @@ public class TablaDePuntos extends javax.swing.JPanel {
                             .addComponent(jTextFieldCantidadVueltas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jTextFieldPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextFieldPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
                     .addComponent(jTextFieldTiempoVueltas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextFieldPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar1)
                     .addComponent(jButtonAtras2))
@@ -231,13 +224,13 @@ public class TablaDePuntos extends javax.swing.JPanel {
     private void jButtonAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptar1ActionPerformed
         // TODO add your handling code here:
 
-        if (jTextFieldTiempoVueltas.getText().trim().isEmpty() == true) {
-
+        if (jTextFieldPosicion.getText().trim().isEmpty() == true || jTextFieldCantidadVueltas.getText().trim().isEmpty() == true || jTextFieldTiempoVueltas.getText().trim().isEmpty() == true || jTextFieldPuntos.getText().trim().isEmpty() == true || jComboBoxPiloto.getItemCount() == 0 || jComboBoxAuto.getItemCount() == 0 || jComboBoxGranprix.getItemCount() == 0) {
             JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
 
         } else {
 
             try {
+                //posiblemente se reemplazen los ints con strings, de hacerse añadir las condiciones al if superior para que verifique que los espacios de texto esten llenos
                 String piloto = jComboBoxPiloto.getSelectedItem().toString();
                 String auto = jComboBoxAuto.getSelectedItem().toString();
                 String granprix = jComboBoxGranprix.getSelectedItem().toString();
@@ -245,11 +238,12 @@ public class TablaDePuntos extends javax.swing.JPanel {
                 int cantidadVueltas = Integer.parseInt(jTextFieldCantidadVueltas.getText());
                 String tiempoVueltas = jTextFieldTiempoVueltas.getText();
                 int puntos = Integer.parseInt(jTextFieldPuntos.getText());
+                //estó va a ir a a la tabla de resultados cuando se haga
+                /* String valores = "'" + piloto + "' , '" + auto + "' , '" + granprix + "' , '"
+                        + posicion + "' , '" + cantidadVueltas + "' , '" + tiempoVueltas + "' , '" + puntos + "'";
 
                 F1app f1 = F1app.getInstance();
-
-                
-                
+                */
                 DefaultTableModel tabla = (DefaultTableModel) jTableTablaPuntos.getModel();
                 tabla.addRow(new Object[]{piloto, auto, granprix, posicion, cantidadVueltas, tiempoVueltas, puntos
                 }
@@ -271,6 +265,10 @@ public class TablaDePuntos extends javax.swing.JPanel {
         VentanaOpciones mostrarVentanaOpciones = new VentanaOpciones();
         mostrarVentanaOpciones.setVisible(true);
     }//GEN-LAST:event_jButtonAtras2ActionPerformed
+
+    private void jComboBoxAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxAutoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar1;

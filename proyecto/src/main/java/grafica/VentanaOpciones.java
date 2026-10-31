@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package grafica;
-
+import javax.swing.table.DefaultTableModel;
+import logica.F1app;
+import grafica.Autos;
 /**
  *
  * @author dasangu
@@ -89,6 +91,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
                 jMenuAutosMouseClicked(evt);
             }
         });
+        jMenuAutos.addActionListener(this::jMenuAutosActionPerformed);
         jMenuBar1.add(jMenuAutos);
 
         jMenuEscuderia1.setText("Escuderias");
@@ -162,9 +165,13 @@ public class VentanaOpciones extends javax.swing.JFrame {
 
     private void jMenuAutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAutosMouseClicked
         // TODO add your handling code here:
+        
+     
         Autos mostrarAutos = new Autos();
         mostrarAutos.setVisible(true);
         this.setVisible(false);
+        
+        
 
     }//GEN-LAST:event_jMenuAutosMouseClicked
 
@@ -184,6 +191,13 @@ public class VentanaOpciones extends javax.swing.JFrame {
    
 
     }//GEN-LAST:event_jMenuEscuderia1ActionPerformed
+
+    private void jMenuAutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAutosActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_jMenuAutosActionPerformed
 
     /**
      * @param args the command line arguments
