@@ -219,9 +219,9 @@ public class Autos extends javax.swing.JFrame {
             jComboBoxEscuderia.addItem(escuderia.replace(":", ""));
         }
 
-        String[] tabla1 = f1.Consultardatabase("modelo", "auto");
+        String[] tabla1 = f1.Consultardatabase("nombre", "escuderia");
         String[] tabla2 = f1.Consultardatabase("año_fabricacion", "auto");
-        String[] tabla3 = f1.Consultardatabase("ID_escuderia", "auto");
+        String[] tabla3 = f1.Consultardatabase("modelo", "auto");
         for (int i = 0; i < tabla1.length; i++) {
             tablaAutos.addRow(new Object[]{tabla1[i].split(":")[0], tabla2[i].split(":")[0], tabla3[i].split(":")[0]});
 
