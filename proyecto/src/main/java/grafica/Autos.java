@@ -43,11 +43,16 @@ public class Autos extends javax.swing.JFrame {
         jComboBoxEscuderia = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jButtonAtras2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldAnoFabricacion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -63,11 +68,11 @@ public class Autos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Escuderia", "Modelo"
+                "Escuderia", "Año de fabricación", "Modelo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -87,6 +92,10 @@ public class Autos extends javax.swing.JFrame {
         jButtonAtras2.setText("Atrás");
         jButtonAtras2.addActionListener(this::jButtonAtras2ActionPerformed);
 
+        jLabel2.setText("Año de Fabricación");
+
+        jTextFieldAnoFabricacion.addActionListener(this::jTextFieldAnoFabricacionActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,39 +109,44 @@ public class Autos extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(118, 118, 118))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jButtonAtras2)
-                                        .addGap(18, 18, 18)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonAceptar1)
-                                    .addComponent(jTextFieldModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxEscuderia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(107, Short.MAX_VALUE))
+                                    .addComponent(jComboBoxEscuderia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldAnoFabricacion)
+                                    .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(102, 102, 102)
+                                .addComponent(jButtonAtras2)
+                                .addGap(37, 37, 37)
+                                .addComponent(jButtonAceptar1)))))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxEscuderia, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldAnoFabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar1)
                     .addComponent(jButtonAtras2))
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,17 +168,15 @@ public class Autos extends javax.swing.JFrame {
                 //pendiente implementar valores al combobox de escuderia 
                 String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
                 String modelo = jTextFieldModelo.getText();
-                String valores = "'" + modelo + "' , '" + escuderia + "'";
-
+                String anoFabricacion = jTextFieldAnoFabricacion.getText();
                 //para terminar debido a problemas obteniendo la id de la escuderia
                 F1app F1 = F1app.getInstance();
-                F1.Insertintodatabase("auto", "modelo, escuderia", valores);
-
-                String ID_escuderia = F1.Consultardatabase("ID_escuderia", "escuderia WHERE año_temporada = " + escuderia)[0].replace(":", "");
+                String ID_escuderia = F1.Consultardatabase("ID_escuderia,nombre", "escuderia WHERE nombre = '" + escuderia + "'")[0].split(":")[0];
+                String valores = "'" + modelo + "' , '" + ID_escuderia + "' , '" + anoFabricacion + "'";
+                F1.Insertintodatabase("auto", "modelo, ID_escuderia, año_fabricacion", valores);
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
-                tabla.addRow(new Object[]{escuderia, modelo});
-
+                tabla.addRow(new Object[]{escuderia, anoFabricacion, modelo});
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
@@ -188,23 +200,33 @@ public class Autos extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        F1app f1 = F1app.getInstance();
+
+       
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jTextFieldAnoFabricacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoFabricacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAnoFabricacionActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+                F1app f1 = F1app.getInstance();
+        DefaultTableModel tablaAutos = (DefaultTableModel) jTableAutos.getModel();
         jComboBoxEscuderia.removeAllItems();
 
         String[] escuderias = f1.Consultardatabase("nombre", "escuderia");
         for (String escuderia : escuderias) {
-            System.out.println("se devolvio " + escuderia);
-            jComboBoxEscuderia.addItem(escuderia);
+            jComboBoxEscuderia.addItem(escuderia.replace(":", ""));
         }
 
-        String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
-        String modelo = jTextFieldModelo.getText();
+        String[] tabla1 = f1.Consultardatabase("modelo", "auto");
+        String[] tabla2 = f1.Consultardatabase("año_fabricacion", "auto");
+        String[] tabla3 = f1.Consultardatabase("ID_escuderia", "auto");
+        for (int i = 0; i < tabla1.length; i++) {
+            tablaAutos.addRow(new Object[]{tabla1[i].split(":")[0], tabla2[i].split(":")[0], tabla3[i].split(":")[0]});
 
-        DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
-        tabla.addRow(new Object[]{escuderia, modelo});
-
-
-    }//GEN-LAST:event_formWindowActivated
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -237,10 +259,12 @@ public class Autos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAtras2;
     private javax.swing.JComboBox<String> jComboBoxEscuderia;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAutos;
+    private javax.swing.JTextField jTextFieldAnoFabricacion;
     private javax.swing.JTextField jTextFieldModelo;
     // End of variables declaration//GEN-END:variables
 }
