@@ -25,8 +25,10 @@ grafica\VentanaOpciones$1.class
 grafica\VentanaOpciones.class
 logica\Escuderia.class
 grafica\VentanaOpciones$5.class
+grafica\TablaPuntos$1.class
 logica\Circuito.class
 logica\GrandPrix.class
+grafica\TablaPuntos.class
 grafica\Pilotos$1.class
 logica\Piloto.class
 grafica\Escuderias$1.class
