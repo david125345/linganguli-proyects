@@ -72,6 +72,11 @@ public class Escuderias extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jButtonAceptar.setText("Aceptar");
         jButtonAceptar.addActionListener(this::jButtonAceptarActionPerformed);
@@ -175,10 +180,10 @@ public class Escuderias extends javax.swing.JFrame {
             try {
                 String nombre = jTextFieldNombre.getText();
                 String valor = "'" + nombre + "'";
-                
+
                 F1app f1 = F1app.getInstance();
                 f1.Insertintodatabase("escuderia", "nombre", valor);
-                
+
                 DefaultTableModel tabla = (DefaultTableModel) jTableEscuderia.getModel();
                 tabla.addRow(new Object[]{nombre});
             } catch (NumberFormatException e) {
@@ -189,31 +194,27 @@ public class Escuderias extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        F1app f1 = F1app.getInstance();
+        DefaultTableModel tablaEscuderias = (DefaultTableModel) jTableEscuderia.getModel();
+        tablaEscuderias.setRowCount(0);
+
+        String[] escuderias = f1.Consultardatabase(
+                "nombre",
+                "escuderia");
+        for (String escuderia : escuderias) {
+            String[] datosEscuderias = escuderia.split(":", -1);
+            tablaEscuderias.addRow(new Object[]{datosEscuderias[0]});
+        }
+
+
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        F1app F1 = F1app.getInstance();
-        F1.realizarprimeraconexiondatabase("jdbc:mysql://localhost:3306/Testing", "rooy", "esoquesentischocandocontucola");
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        ArrayList<Autos> listaautos = new ArrayList<>();
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Escuderias().setVisible(true));
     }
 
 
