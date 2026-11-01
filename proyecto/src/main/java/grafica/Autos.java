@@ -173,16 +173,15 @@ public class Autos extends javax.swing.JFrame {
         } else {
 
             try {
-                String escuderia = jComboBoxEscuderia.getSelectedItem().toString();
-                String modelo = jTextFieldModelo.getText();
-                String anoFabricacion = jTextFieldAnoFabricacion.getText();
+                ForeignKeyOption escuderia = (ForeignKeyOption) jComboBoxEscuderia.getSelectedItem();
+                String modelo = jTextFieldModelo.getText().trim();
+                String anoFabricacion = jTextFieldAnoFabricacion.getText().trim();
                 F1app F1 = F1app.getInstance();
-                String ID_escuderia = F1.Consultardatabase("ID_escuderia,nombre", "escuderia WHERE nombre = '" + escuderia + "'")[0].split(":")[0];
-                String valores = "'" + modelo + "' , '" + ID_escuderia + "' , '" + anoFabricacion + "'";
+                String valores = "'" + modelo + "' , '" + escuderia.getId() + "' , '" + anoFabricacion + "'";
                 F1.Insertintodatabase("auto", "modelo, ID_escuderia, año_fabricacion", valores);
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableAutos.getModel();
-                tabla.addRow(new Object[]{escuderia, anoFabricacion, modelo});
+                tabla.addRow(new Object[]{escuderia.toString(), anoFabricacion, modelo});
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
@@ -220,14 +219,26 @@ public class Autos extends javax.swing.JFrame {
         tablaAutos.setRowCount(0);
         jComboBoxEscuderia.removeAllItems();
 
-        String[] escuderias = f1.Consultardatabase("nombre", "escuderia");
+        String[] escuderias = f1.Consultardatabase("ID_escuderia,nombre", "escuderia ORDER BY nombre");
+        if (escuderias == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar las escuderías.");
+            return;
+        }
         for (String escuderia : escuderias) {
-            jComboBoxEscuderia.addItem(escuderia.replace(":", ""));
+            String[] datosEscuderia = escuderia.split(":", 2);
+            jComboBoxEscuderia.addItem(new ForeignKeyOption(datosEscuderia[0], datosEscuderia[1]));
         }
 
         String[] autos = f1.Consultardatabase(
                 "nombre,año_fabricacion,modelo",
-                "auto INNER JOIN escuderia ON auto.id_escuderia = escuderia.id_escuderia");
+                "(SELECT escuderia.nombre AS nombre, auto.año_fabricacion AS año_fabricacion, "
+                + "auto.modelo AS modelo, auto.ID_auto AS ID_auto FROM auto "
+                + "INNER JOIN escuderia ON auto.id_escuderia = escuderia.id_escuderia) AS autos "
+                + "ORDER BY ID_auto");
+        if (autos == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los autos.");
+            return;
+        }
         for (String auto : autos) {
             String[] datosAuto = auto.split(":", -1);
             tablaAutos.addRow(new Object[]{datosAuto[0], datosAuto[1], datosAuto[2]});
@@ -263,7 +274,7 @@ public class Autos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar1;
     private javax.swing.JButton jButtonAtras2;
-    private javax.swing.JComboBox<String> jComboBoxEscuderia;
+    private javax.swing.JComboBox<ForeignKeyOption> jComboBoxEscuderia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

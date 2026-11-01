@@ -203,6 +203,10 @@ public class Circuitos extends javax.swing.JFrame {
         String[] circuitos = f1.Consultardatabase(
                 "longitud,nro_vueltas,pais,nombre",
                 "circuito");
+        if (circuitos == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los circuitos.");
+            return;
+        }
         for (String circuito : circuitos) {
             String[] datosCircuito = circuito.split(":", -1);
             tablaCircuito.addRow(new Object[]{datosCircuito[0], datosCircuito[1], datosCircuito[2], datosCircuito[3]});

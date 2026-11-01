@@ -203,6 +203,10 @@ public class Escuderias extends javax.swing.JFrame {
         String[] escuderias = f1.Consultardatabase(
                 "nombre",
                 "escuderia");
+        if (escuderias == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar las escuderías.");
+            return;
+        }
         for (String escuderia : escuderias) {
             String[] datosEscuderias = escuderia.split(":", -1);
             tablaEscuderias.addRow(new Object[]{datosEscuderias[0]});

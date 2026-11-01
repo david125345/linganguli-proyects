@@ -6,6 +6,7 @@ package grafica;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logica.F1app;
 /**
  *
  * @author dasangu
@@ -50,6 +51,11 @@ public class TablaPuntos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Piloto");
 
@@ -185,37 +191,91 @@ public class TablaPuntos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if (jTextFieldPosicion.getText().trim().isEmpty() == true || jTextFieldCantidadVueltas.getText().trim().isEmpty() == true || jTextFieldTiempoVueltas.getText().trim().isEmpty() == true || jTextFieldPuntos.getText().trim().isEmpty() == true || jComboBoxPiloto.getItemCount() == 0 || jComboBoxAuto.getItemCount() == 0 || jComboBoxGranprix.getItemCount() == 0) {
+        if (jTextFieldPosicion.getText().trim().isEmpty()
+                || jTextFieldCantidadVueltas.getText().trim().isEmpty()
+                || jTextFieldTiempoVueltas.getText().trim().isEmpty()
+                || jTextFieldPuntos.getText().trim().isEmpty()
+                || jComboBoxPiloto.getSelectedItem() == null
+                || jComboBoxAuto.getSelectedItem() == null
+                || jComboBoxGranprix.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
         } else {
 
             try {
-                //posiblemente se reemplazen los ints con strings, de hacerse añadir las condiciones al if superior para que verifique que los espacios de texto esten llenos
-                String piloto = jComboBoxPiloto.getSelectedItem().toString();
-                String auto = jComboBoxAuto.getSelectedItem().toString();
-                String granprix = jComboBoxGranprix.getSelectedItem().toString();
+                ForeignKeyOption piloto = (ForeignKeyOption) jComboBoxPiloto.getSelectedItem();
+                ForeignKeyOption auto = (ForeignKeyOption) jComboBoxAuto.getSelectedItem();
+                ForeignKeyOption granprix = (ForeignKeyOption) jComboBoxGranprix.getSelectedItem();
                 int posicion = Integer.parseInt(jTextFieldPosicion.getText());
                 int cantidadVueltas = Integer.parseInt(jTextFieldCantidadVueltas.getText());
-                String tiempoVueltas = jTextFieldTiempoVueltas.getText();
-                int puntos = Integer.parseInt(jTextFieldPuntos.getText());
-                //estó va a ir a a la tabla de resultados cuando se haga
-                /* String valores = "'" + piloto + "' , '" + auto + "' , '" + granprix + "' , '"
-                        + posicion + "' , '" + cantidadVueltas + "' , '" + tiempoVueltas + "' , '" + puntos + "'";
+                String tiempoVueltas = jTextFieldTiempoVueltas.getText().trim();
+                java.math.BigDecimal puntos = new java.math.BigDecimal(jTextFieldPuntos.getText().trim());
 
                 F1app f1 = F1app.getInstance();
-                */
-                DefaultTableModel tabla = (DefaultTableModel) jTableTablaPuntos.getModel();
-                tabla.addRow(new Object[]{piloto, auto, granprix, posicion, cantidadVueltas, tiempoVueltas, puntos
-                }
-                );
+                f1.Insertintodatabase("resultado",
+                        "ID_piloto, ID_auto, ID_gp, posición, cant_vueltas, puntos",
+                        "'" + piloto.getId() + "', '" + auto.getId() + "', '" + granprix.getId()
+                        + "', '" + posicion + "', '" + cantidadVueltas + "', '" + puntos.toPlainString() + "'");
+                f1.Insertintodatabase("tiempo_vueltas", "tiempo, id_piloto",
+                        "'" + tiempoVueltas + "', '" + piloto.getId() + "'");
+                formWindowOpened(null);
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Inserte valores validos");
+                JOptionPane.showMessageDialog(this, "Inserte valores numéricos válidos.");
             }
         }
         
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {
+        F1app f1 = F1app.getInstance();
+        DefaultTableModel tabla = (DefaultTableModel) jTableTablaPuntos.getModel();
+        tabla.setRowCount(0);
+        jComboBoxPiloto.removeAllItems();
+        jComboBoxAuto.removeAllItems();
+        jComboBoxGranprix.removeAllItems();
+
+        String[] pilotos = f1.Consultardatabase("ID_piloto,nombre", "piloto ORDER BY nombre");
+        String[] autos = f1.Consultardatabase("ID_auto,modelo,año_fabricacion", "auto ORDER BY modelo");
+        String[] granprix = f1.Consultardatabase("ID_gp,nombre", "grandprix ORDER BY fecha");
+        if (pilotos == null || autos == null || granprix == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar las opciones de resultados.");
+            return;
+        }
+        for (String fila : pilotos) {
+            String[] datos = fila.split(":", 3);
+            jComboBoxPiloto.addItem(new ForeignKeyOption(datos[0], datos[1]));
+        }
+        for (String fila : autos) {
+            String[] datos = fila.split(":", 3);
+            jComboBoxAuto.addItem(new ForeignKeyOption(datos[0], datos[1] + " (" + datos[2] + ")"));
+        }
+        for (String fila : granprix) {
+            String[] datos = fila.split(":", 2);
+            jComboBoxGranprix.addItem(new ForeignKeyOption(datos[0], datos[1]));
+        }
+
+        String[] resultados = f1.Consultardatabase(
+                "piloto,auto,granprix,posicion,cant_vueltas,tiempo,puntos",
+                "(SELECT p.nombre AS piloto, a.modelo AS auto, gp.nombre AS granprix, "
+                + "r.posición AS posicion, r.cant_vueltas AS cant_vueltas, "
+                + "(SELECT tv.tiempo FROM tiempo_vueltas tv WHERE tv.id_piloto = r.ID_piloto "
+                + "ORDER BY tv.resultado DESC LIMIT 1) AS tiempo, r.puntos AS puntos, "
+                + "r.ID_gp AS ID_gp, r.ID_piloto AS ID_piloto, r.ID_auto AS ID_auto "
+                + "FROM resultado r INNER JOIN piloto p ON r.ID_piloto = p.ID_piloto "
+                + "INNER JOIN auto a ON r.ID_auto = a.ID_auto "
+                + "INNER JOIN grandprix gp ON r.ID_gp = gp.ID_gp) AS resultados "
+                + "ORDER BY ID_gp, posicion");
+        if (resultados == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los resultados.");
+            return;
+        }
+        for (String fila : resultados) {
+            String[] datos = fila.split(":", -1);
+            tabla.addRow(new Object[]{datos[0], datos[1], datos[2], datos[3],
+                datos[4], "null".equals(datos[5]) ? "" : datos[5], datos[6]});
+        }
+    }
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
     }//GEN-LAST:event_jButton1MouseClicked
@@ -256,9 +316,9 @@ public class TablaPuntos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBoxAuto;
-    private javax.swing.JComboBox<String> jComboBoxGranprix;
-    private javax.swing.JComboBox<String> jComboBoxPiloto;
+    private javax.swing.JComboBox<ForeignKeyOption> jComboBoxAuto;
+    private javax.swing.JComboBox<ForeignKeyOption> jComboBoxGranprix;
+    private javax.swing.JComboBox<ForeignKeyOption> jComboBoxPiloto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

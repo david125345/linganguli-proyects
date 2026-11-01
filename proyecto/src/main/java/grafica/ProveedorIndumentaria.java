@@ -190,16 +190,19 @@ public class ProveedorIndumentaria extends javax.swing.JFrame {
 
                         try {
 
-                String nombre = jTextFieldNombre.getText();
-                String proveedor = jComboBoxProveedor.getSelectedItem().toString();
+                String nombre = jTextFieldNombre.getText().trim();
+                ForeignKeyOption proveedor = (ForeignKeyOption) jComboBoxProveedor.getSelectedItem();
+                if (proveedor == null) {
+                    JOptionPane.showMessageDialog(this, "Debes seleccionar un proveedor.");
+                    return;
+                }
                 
                 F1app F1 = F1app.getInstance();
-                String ID_proveedor = F1.Consultardatabase("ID_proveedor,nombre", "proveedor WHERE nombre = '" + proveedor + "'")[0].split(":")[0];
-                String valores = "'" + nombre + "' , '" + ID_proveedor + "'";
+                String valores = "'" + nombre + "' , '" + proveedor.getId() + "'";
                 F1.Insertintodatabase("prov_indumentaria", "nombre, ID_proveedor", valores);
 
                 DefaultTableModel tabla = (DefaultTableModel) jTableProvIndumentaria.getModel();
-                tabla.addRow(new Object[]{nombre, proveedor});
+                tabla.addRow(new Object[]{nombre, proveedor.toString()});
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
@@ -215,14 +218,26 @@ public class ProveedorIndumentaria extends javax.swing.JFrame {
         tablaProveedorIndumentaria.setRowCount(0);
         jComboBoxProveedor.removeAllItems();
 
-        String[] proveedores = f1.Consultardatabase("nombre", "proveedores");
+        String[] proveedores = f1.Consultardatabase("ID_proveedores,nombre", "proveedores ORDER BY nombre");
+        if (proveedores == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los proveedores.");
+            return;
+        }
         for (String proveedor : proveedores) {
-            jComboBoxProveedor.addItem(proveedor.replace(":", ""));
+            String[] datosProveedor = proveedor.split(":", 2);
+            jComboBoxProveedor.addItem(new ForeignKeyOption(datosProveedor[0], datosProveedor[1]));
         }
 
         String[] proveedorIndumentaria = f1.Consultardatabase(
-                "prov_indumentaria.nombre,proveedores.nombre",
-                "proveedores INNER JOIN prov_indumentaria ON proveedores.id_proveedores = prov_indumentaria.id_proveedor");
+                "nombre,proveedor",
+                "(SELECT prov_indumentaria.nombre AS nombre, proveedores.nombre AS proveedor, "
+                + "prov_indumentaria.ID_proveedor AS ID_proveedor FROM proveedores INNER JOIN "
+                + "prov_indumentaria ON proveedores.ID_proveedores = prov_indumentaria.ID_proveedor) "
+                + "AS proveedores_indumentaria ORDER BY ID_proveedor");
+        if (proveedorIndumentaria == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los proveedores de indumentaria.");
+            return;
+        }
         for (String proveedor : proveedorIndumentaria) {
             String[] datosProveedor = proveedor.split(":", -1);
             tablaProveedorIndumentaria.addRow(new Object[]{datosProveedor[0], datosProveedor[1]});
@@ -239,7 +254,7 @@ public class ProveedorIndumentaria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAtras;
-    private javax.swing.JComboBox<String> jComboBoxProveedor;
+    private javax.swing.JComboBox<ForeignKeyOption> jComboBoxProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

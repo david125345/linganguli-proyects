@@ -4,6 +4,11 @@
  */
 package grafica;
 
+import javax.swing.table.DefaultTableModel;
+import java.util.HashMap;
+import java.util.Map;
+import logica.F1app;
+
 /**
  *
  * @author dasangu
@@ -17,6 +22,7 @@ public class Resultados extends javax.swing.JFrame {
      */
     public Resultados() {
         initComponents();
+        cargarResultados();
     }
 
     /**
@@ -29,44 +35,161 @@ public class Resultados extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelEstado = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableResultados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Resultados de Fórmula 1");
 
-        jLabel1.setText("Temporada");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18));
+        jLabel1.setText("Resultados");
+        jLabelEstado.setText("Cargando resultados...");
 
-        jLabel2.setText("Granprix");
-
-        jLabel3.setText("Auto");
+        jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "Temporada", "Gran Premio", "Piloto", "Auto", "Posición",
+                "Vueltas", "Tiempo de vuelta", "Puntos"
+            }
+        ) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        });
+        jScrollPane1.setViewportView(jTableResultados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel3)
-                .addGap(83, 83, 83))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelEstado)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelEstado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cargarResultados() {
+        DefaultTableModel model = (DefaultTableModel) jTableResultados.getModel();
+        model.setRowCount(0);
+        jLabelEstado.setText("Cargando resultados...");
+
+        F1app f1 = F1app.getInstance();
+        String[] resultados = f1.Consultardatabase(
+                "ID_piloto,ID_auto,ID_gp,posición,cant_vueltas,puntos",
+                "RESULTADO ORDER BY ID_gp,posición");
+
+        if (resultados == null) {
+            logger.severe("No se pudieron cargar los resultados desde la base de datos.");
+            jLabelEstado.setText("No se pudieron cargar los resultados. Revisa la conexión y la consola.");
+            return;
+        }
+
+        Map<String, String> pilotos = new HashMap<>();
+        Map<String, String> autos = new HashMap<>();
+        Map<String, String> grandesPremios = new HashMap<>();
+        Map<String, String> temporadas = new HashMap<>();
+        Map<String, String> tiempos = new HashMap<>();
+
+        for (String resultado : resultados) {
+            String[] datos = resultado.split(":", -1);
+            if (datos.length < 7) {
+                logger.warning("Se omitió una fila de resultados con un formato inesperado.");
+                continue;
+            }
+
+            String pilotoId = datos[0];
+            String autoId = datos[1];
+            String granPrixId = datos[2];
+            String granPrixInfo = buscarNombre(
+                    f1, grandesPremios, granPrixId, "nombre,ID_temporada",
+                    "GRANDPRIX", "ID_gp = " + granPrixId);
+            String granPrixNombre = valorLookup(granPrixInfo, 0, granPrixId);
+            String temporadaId = valorLookup(granPrixInfo, 1, null);
+            String temporada = temporadaId == null ? "" : buscarNombre(
+                    f1, temporadas, temporadaId, "año_temporada",
+                    "TEMPORADA", "ID_temporada = " + temporadaId);
+            String piloto = buscarNombre(
+                    f1, pilotos, pilotoId, "nombre", "PILOTO", "ID_piloto = " + pilotoId);
+            String auto = buscarNombre(
+                    f1, autos, autoId, "Modelo", "AUTO", "ID_auto = " + autoId);
+            String tiempo = buscarNombre(
+                    f1, tiempos, pilotoId, "tiempo", "TIEMPO_VUELTAS",
+                    "id_piloto = " + pilotoId + " ORDER BY resultado DESC LIMIT 1");
+
+            model.addRow(new Object[]{
+                temporada,
+                granPrixNombre,
+                piloto,
+                auto,
+                datos[3],
+                datos[4],
+                tiempo,
+                datos[5]
+            });
+        }
+        jLabelEstado.setText(model.getRowCount() == 0
+                ? "No hay resultados guardados."
+                : model.getRowCount() + " resultado(s) cargado(s).");
+    }
+
+    private String buscarNombre(F1app f1, Map<String, String> cache, String id,
+            String columnas, String tabla, String condicion) {
+        String valorEnCache = cache.get(id);
+        if (valorEnCache != null) {
+            return valorEnCache;
+        }
+
+        String[] filas = f1.Consultardatabase(columnas, tabla + " WHERE " + condicion);
+        if (filas == null || filas.length == 0) {
+            logger.warning("No se encontró " + tabla + " para el ID " + id + ".");
+            String noEncontrado = tabla.equals("TIEMPO_VUELTAS") ? "" : "ID " + id;
+            cache.put(id, noEncontrado);
+            return noEncontrado;
+        }
+
+        String fila = filas[0];
+        if (columnas.equals("tiempo")) {
+            String tiempo = fila.endsWith(":") ? fila.substring(0, fila.length() - 1) : fila;
+            if ("null".equals(tiempo)) {
+                tiempo = "";
+            }
+            cache.put(id, tiempo);
+            return tiempo;
+        }
+        cache.put(id, fila);
+        return fila;
+    }
+
+    private String valorLookup(String fila, int indice, String fallback) {
+        String[] columnas = fila.split(":", -1);
+        if (indice >= columnas.length || columnas[indice].isEmpty()) {
+            return fallback;
+        }
+        return columnas[indice];
+    }
 
     /**
      * @param args the command line arguments
@@ -95,7 +218,8 @@ public class Resultados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelEstado;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableResultados;
     // End of variables declaration//GEN-END:variables
 }

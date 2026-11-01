@@ -39,7 +39,7 @@ public class granprix extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldTemporada = new javax.swing.JTextField();
+        jComboBoxTemporada = new javax.swing.JComboBox<>();
         jButtonAceptar1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableGranprix = new javax.swing.JTable();
@@ -69,12 +69,17 @@ public class granprix extends javax.swing.JFrame {
         jTextField3.setText("jTextField3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel2.setText("Granprix");
 
         jLabel4.setText("Temporada");
 
-        jTextFieldTemporada.addActionListener(this::jTextFieldTemporadaActionPerformed);
+        jComboBoxTemporada.addActionListener(this::jTextFieldTemporadaActionPerformed);
 
         jButtonAceptar1.setText("Aceptar");
         jButtonAceptar1.addActionListener(this::jButtonAceptar1ActionPerformed);
@@ -126,7 +131,7 @@ public class granprix extends javax.swing.JFrame {
                             .addComponent(jTextFieldNombre)
                             .addComponent(jTextFieldFecha)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(211, 211, 211))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -154,7 +159,7 @@ public class granprix extends javax.swing.JFrame {
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxTemporada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,33 +180,65 @@ public class granprix extends javax.swing.JFrame {
     private void jButtonAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptar1ActionPerformed
         // TODO add your handling code here:
 
-        if (jTextFieldFecha.getText().trim().isEmpty() || jTextFieldNombre.getText().trim().isEmpty() || jTextFieldTemporada.getText().trim().isEmpty() == true) {
+        if (jTextFieldFecha.getText().trim().isEmpty() || jTextFieldNombre.getText().trim().isEmpty()
+                || jComboBoxTemporada.getSelectedItem() == null) {
 
             JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
 
         } else {
 
             try {
-                String fecha = jTextFieldFecha.getText();
-                String nombre = jTextFieldNombre.getText();
-                String temporada = jTextFieldTemporada.getText();
+                String fecha = jTextFieldFecha.getText().trim();
+                String nombre = jTextFieldNombre.getText().trim();
+                ForeignKeyOption temporada = (ForeignKeyOption) jComboBoxTemporada.getSelectedItem();
 
                 F1app F1 = F1app.getInstance();
 
-                String ID_temporada = F1.Consultardatabase("ID_temporada", "temporada WHERE año_temporada = " + temporada)[0].replace(":", "");
-                String valores = "'" + fecha + "' , '" + nombre + "' , '" + ID_temporada + "'";
+                String valores = "'" + fecha + "' , '" + nombre + "' , '" + temporada.getId() + "'";
                 
                 F1.Insertintodatabase("grandprix", "fecha, nombre, ID_temporada ", valores);
 
-
                 DefaultTableModel tabla = (DefaultTableModel) jTableGranprix.getModel();
-                tabla.addRow(new Object[]{fecha, nombre, temporada});
+                tabla.addRow(new Object[]{fecha, nombre, temporada.toString()});
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
             }
         }
 
     }//GEN-LAST:event_jButtonAceptar1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {
+        F1app f1 = F1app.getInstance();
+        DefaultTableModel tabla = (DefaultTableModel) jTableGranprix.getModel();
+        tabla.setRowCount(0);
+        jComboBoxTemporada.removeAllItems();
+
+        String[] temporadas = f1.Consultardatabase(
+                "ID_temporada,año_temporada", "temporada ORDER BY año_temporada");
+        if (temporadas == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar las temporadas.");
+            return;
+        }
+        for (String temporada : temporadas) {
+            String[] datosTemporada = temporada.split(":", 2);
+            jComboBoxTemporada.addItem(new ForeignKeyOption(datosTemporada[0], datosTemporada[1]));
+        }
+
+        String[] granprix = f1.Consultardatabase(
+                "fecha,nombre,año_temporada",
+                "(SELECT grandprix.fecha AS fecha, grandprix.nombre AS nombre, "
+                + "temporada.año_temporada AS año_temporada, grandprix.ID_gp AS ID_gp "
+                + "FROM grandprix INNER JOIN temporada "
+                + "ON grandprix.ID_temporada = temporada.ID_temporada) AS grandsprix ORDER BY ID_gp");
+        if (granprix == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los Grandes Premios.");
+            return;
+        }
+        for (String fila : granprix) {
+            String[] datos = fila.split(":", -1);
+            tabla.addRow(new Object[]{datos[0], datos[1], datos[2]});
+        }
+    }
 
     private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
         // TODO add your handling code here:
@@ -259,6 +296,6 @@ public class granprix extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextFieldFecha;
     private javax.swing.JTextField jTextFieldNombre;
-    private javax.swing.JTextField jTextFieldTemporada;
+    private javax.swing.JComboBox<ForeignKeyOption> jComboBoxTemporada;
     // End of variables declaration//GEN-END:variables
 }

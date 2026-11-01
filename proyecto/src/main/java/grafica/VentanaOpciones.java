@@ -3,9 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package grafica;
-import javax.swing.table.DefaultTableModel;
-import logica.F1app;
-import grafica.Autos;
 /**
  *
  * @author dasangu
@@ -40,6 +37,8 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jMenuCircuitos = new javax.swing.JMenu();
         jMenuAutos = new javax.swing.JMenu();
         jMenuEscuderia1 = new javax.swing.JMenu();
+        jMenuProveedorIndumentaria = new javax.swing.JMenu();
+        jMenuTemporadas = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -106,6 +105,22 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jMenuEscuderia1.addActionListener(this::jMenuEscuderia1ActionPerformed);
         jMenuBar1.add(jMenuEscuderia1);
 
+        jMenuProveedorIndumentaria.setText("Proveedores de indumentaria");
+        jMenuProveedorIndumentaria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuProveedorIndumentariaMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenuProveedorIndumentaria);
+
+        jMenuTemporadas.setText("Temporadas");
+        jMenuTemporadas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuTemporadasMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenuTemporadas);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,8 +186,8 @@ public class VentanaOpciones extends javax.swing.JFrame {
     }//GEN-LAST:event_JMenuGranprixMouseClicked
 
     private void jMenuTablaPuntosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuTablaPuntosMouseClicked
-        granprix mostrargranprix = new granprix();
-        mostrargranprix.setVisible(true);
+        TablaPuntos mostrarTablaPuntos = new TablaPuntos();
+        mostrarTablaPuntos.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuTablaPuntosMouseClicked
 
@@ -199,6 +214,17 @@ public class VentanaOpciones extends javax.swing.JFrame {
         mostrarEscuderias.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuEscuderia1MouseClicked
+
+    private void jMenuProveedorIndumentariaMouseClicked(java.awt.event.MouseEvent evt) {
+        ProveedorIndumentaria mostrarProveedorIndumentaria = new ProveedorIndumentaria();
+        mostrarProveedorIndumentaria.setVisible(true);
+        this.setVisible(false);
+    }
+
+    private void jMenuTemporadasMouseClicked(java.awt.event.MouseEvent evt) {
+        new TemporadasWindow().setVisible(true);
+        this.setVisible(false);
+    }
 
     /**
      * @param args the command line arguments
@@ -236,6 +262,8 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jMenuPilotos;
+    private javax.swing.JMenu jMenuProveedorIndumentaria;
+    private javax.swing.JMenu jMenuTemporadas;
     private javax.swing.JMenu jMenuTablaPuntos;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     // End of variables declaration//GEN-END:variables

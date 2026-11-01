@@ -6,6 +6,7 @@ package grafica;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 import logica.F1app;
 
 /**
@@ -76,11 +77,11 @@ public class Pilotos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Nacionalidad", "Fecha de Nacimiento"
+                "Nombre", "Nacionalidad", "Fecha de Nacimiento", "Proveedor indumentaria"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -179,7 +180,8 @@ public class Pilotos extends javax.swing.JFrame {
     private void jButtonAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptar1ActionPerformed
         // TODO add your handling code here:
 
-        if (jTextFieldNombre.getText().trim().isEmpty() || jTextFieldFechaNacimiento.getText().trim().isEmpty() == true) {
+        if (jTextFieldNombre.getText().trim().isEmpty() || jTextFieldNacionalidad.getText().trim().isEmpty()
+                || jTextFieldFechaNacimiento.getText().trim().isEmpty()) {
 
             JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
 
@@ -190,15 +192,22 @@ public class Pilotos extends javax.swing.JFrame {
                 String nacionalidad = jTextFieldNacionalidad.getText();
                 //pendiende implementacion para forzar el formateo de la fecha ej, 2017-6-15/yyyy-m-d
                 String fechaNacimiento = jTextFieldFechaNacimiento.getText();
+                ForeignKeyOption proveedor = (ForeignKeyOption) jComboBox1.getSelectedItem();
                 String valores = "'" + nombre + "' , '" + nacionalidad + "' , '" + fechaNacimiento + "'";
+                String columnas = "nombre, nacionalidad, fecha_nacimiento";
+                if (proveedor != null) {
+                    columnas += ", ID_proveedor_indumentaria";
+                    valores += ", '" + proveedor.getId() + "'";
+                }
 
                 DefaultTableModel tabla = (DefaultTableModel) jTablePilotos.getModel();
 
                 F1app F1 = F1app.getInstance();
 
-                F1.Insertintodatabase("piloto", "nombre, nacionalidad, fecha_nacimiento", valores);
+                F1.Insertintodatabase("piloto", columnas, valores);
 
-                tabla.addRow(new Object[]{nombre, nacionalidad, fechaNacimiento});
+                tabla.addRow(new Object[]{nombre, nacionalidad, fechaNacimiento,
+                    proveedor == null ? "" : proveedor.toString()});
 
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Inserte valores validos");
@@ -221,22 +230,37 @@ public class Pilotos extends javax.swing.JFrame {
         F1app f1 = F1app.getInstance();
         DefaultTableModel tablaPilotos = (DefaultTableModel) jTablePilotos.getModel();
         tablaPilotos.setRowCount(0);
+        jComboBox1.removeAllItems();
 
-        String[] pilotos = f1.Consultardatabase(
-                "nombre,nacionalidad,fecha_nacimiento,ID_proveedor_indumentaria",
-                "piloto");
-        for (String piloto : pilotos) {
-            String[] datosPilotos = piloto.split(":", -1);
-            tablaPilotos.addRow(new Object[]{datosPilotos[0], datosPilotos[1], datosPilotos[2], datosPilotos[3]});
+        String[] proveedores = f1.Consultardatabase(
+                "ID_proveedor,nombre", "prov_indumentaria ORDER BY nombre");
+        if (proveedores == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los proveedores de indumentaria.");
+            return;
         }
-        
+        for (String proveedor : proveedores) {
+            String[] datosProveedor = proveedor.split(":", 2);
+            jComboBox1.addItem(new ForeignKeyOption(datosProveedor[0], datosProveedor[1]));
+        }
+
         String[] piloto = f1.Consultardatabase(
-                "nombre,año_fabricacion,modelo",
-                "piloto INNER JOIN escuderia ON auto.id_escuderia = escuderia.id_escuderia");
-        for (String auto : piloto) {
-            String[] datosAuto = auto.split(":", -1);
-            tablaAutos.addRow(new Object[]{datosAuto[0], datosAuto[1], datosAuto[2]});
+                "nombre,nacionalidad,fecha_nacimiento,proveedor",
+                "(SELECT piloto.nombre AS nombre, piloto.nacionalidad AS nacionalidad, "
+                + "piloto.fecha_nacimiento AS fecha_nacimiento, p.proveedor AS proveedor, "
+                + "piloto.ID_piloto AS ID_piloto FROM piloto LEFT JOIN "
+                + "(SELECT ID_proveedor, nombre AS proveedor FROM prov_indumentaria) p "
+                + "ON piloto.ID_proveedor_indumentaria = p.ID_proveedor) AS pilotos ORDER BY ID_piloto");
+        if (piloto == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los pilotos.");
+            return;
         }
+        for (String pilot : piloto) {
+            String[] datosPiloto = pilot.split(":", -1);
+            tablaPilotos.addRow(new Object[]{datosPiloto[0], datosPiloto[1], datosPiloto[2],
+                datosPiloto.length > 3 && !datosPiloto[3].equals("null") ? datosPiloto[3] : ""});
+        }
+
+        
         
         
         
@@ -249,7 +273,8 @@ public class Pilotos extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
@@ -280,7 +305,7 @@ public class Pilotos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar1;
     private javax.swing.JButton jButtonAtras2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<ForeignKeyOption> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
