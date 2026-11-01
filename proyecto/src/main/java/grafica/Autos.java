@@ -4,10 +4,10 @@
  */
 package grafica;
 
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import logica.F1app;
+import javax.swing.table.DefaultTableModel;
 
+import logica.F1app;
 /**
  *
  * @author dasangu
@@ -208,34 +208,22 @@ public class Autos extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-                F1app f1 = F1app.getInstance();
+        F1app f1 = F1app.getInstance();
         DefaultTableModel tablaAutos = (DefaultTableModel) jTableAutos.getModel();
+        tablaAutos.setRowCount(0);
         jComboBoxEscuderia.removeAllItems();
 
         String[] escuderias = f1.Consultardatabase("nombre", "escuderia");
         for (String escuderia : escuderias) {
             jComboBoxEscuderia.addItem(escuderia.replace(":", ""));
         }
-        
-        
-        String[] listaIdEscuderias = f1.Consultardatabase("id_escuderia", "auto");
-        String[] listaNombreEscuderias = new String[listaIdEscuderias.length];
-        String nombreEscuderia;
-        
-        for (int i = 0; i < listaIdEscuderias.length; i++){
-        nombreEscuderia = f1.Consultardatabase("nombre,id_escuderia", "escuderia WHERE id_escuderia = '" + listaIdEscuderias[i] + "'")[0].split(":")[0];
-        listaNombreEscuderias[i] = nombreEscuderia;
-        }
-        String[] tabla1 = listaNombreEscuderias;
-        String[] tabla2 = new String[listaIdEscuderias.length];
-        String[] tabla3 = new String[listaIdEscuderias.length];
-        for (int i = 0; i < listaIdEscuderias.length; i++){
-        tabla2[i] = f1.Consultardatabase("año_fabricacion,ID_escuderia", "auto WHERE ID_escuderia = '" + listaIdEscuderias[i] + "'")[0].split(":")[0];
-        tabla3[i] = f1.Consultardatabase("modelo,ID_escuderia", "auto WHERE ID_escuderia = '" + listaIdEscuderias[i] + "'")[0].split(":")[0];
-        }
-            
-        for (int i = 0; i < tabla1.length; i++) {
-            tablaAutos.addRow(new Object[]{tabla1[i].split(":")[0], tabla2[i].split(":")[0], tabla3[i].split(":")[0]});
+
+        String[] autos = f1.Consultardatabase(
+                "nombre,año_fabricacion,modelo",
+                "auto INNER JOIN escuderia ON auto.id_escuderia = escuderia.id_escuderia");
+        for (String auto : autos) {
+            String[] datosAuto = auto.split(":", -1);
+            tablaAutos.addRow(new Object[]{datosAuto[0], datosAuto[1], datosAuto[2]});
         }
     }//GEN-LAST:event_formWindowOpened
 
