@@ -3,7 +3,7 @@ grafica\VentanaOpciones$6.class
 logica\Temporada.class
 logica\F1app.class
 logica\Autos.class
-grafica\TablaDePuntos$1.class
+grafica\TablaPuntos$2.class
 logica\Auto.class
 logica\Proveedores.class
 logica\Proveedor.class
@@ -39,4 +39,3 @@ logica\Temporadas.class
 grafica\granprix.class
 grafica\Autos.class
 sql\Sqlconector.class
-grafica\TablaDePuntos.class

@@ -109,8 +109,6 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonAceptarActionPerformed
-        // TODO add your handling code here:
-
         String usuario = JTextFieldUsuario.getText();
         String contrasena = JTextFieldContrasena.getText();
 

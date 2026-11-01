@@ -67,6 +67,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
                 jMenuTablaPuntosMouseClicked(evt);
             }
         });
+        jMenuTablaPuntos.addActionListener(this::jMenuTablaPuntosActionPerformed);
         jMenuBar1.add(jMenuTablaPuntos);
 
         jMenuPilotos.setText("Pilotos");
@@ -75,6 +76,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
                 jMenuPilotosMouseClicked(evt);
             }
         });
+        jMenuPilotos.addActionListener(this::jMenuPilotosActionPerformed);
         jMenuBar1.add(jMenuPilotos);
 
         jMenuCircuitos.setText("Circuitos");
@@ -83,6 +85,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
                 jMenuCircuitosMouseClicked(evt);
             }
         });
+        jMenuCircuitos.addActionListener(this::jMenuCircuitosActionPerformed);
         jMenuBar1.add(jMenuCircuitos);
 
         jMenuAutos.setText("Autos");
@@ -125,79 +128,77 @@ public class VentanaOpciones extends javax.swing.JFrame {
     
     
     private void JMenuGranprixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuGranprixActionPerformed
-        // TODO add your handling code here:
+        granprix mostrargranprix = new granprix();
+        mostrargranprix.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_JMenuGranprixActionPerformed
 
-    private void JMenuGranprixMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuGranprixMouseClicked
-        // TODO add your handling code here:
+   
+    private void jMenuEscuderia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEscuderia1ActionPerformed
+        Escuderias mostrarEscuderias = new Escuderias();
+        mostrarEscuderias.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuEscuderia1ActionPerformed
 
+    private void jMenuAutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAutosActionPerformed
+        Autos mostrarAutos = new Autos();
+        mostrarAutos.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuAutosActionPerformed
+
+    private void jMenuCircuitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCircuitosActionPerformed
+        Circuitos mostrarCircuitos = new Circuitos();
+        mostrarCircuitos.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuCircuitosActionPerformed
+
+    private void jMenuPilotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPilotosActionPerformed
+        Pilotos mostrarPilotos = new Pilotos();
+        mostrarPilotos.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuPilotosActionPerformed
+
+    private void jMenuTablaPuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTablaPuntosActionPerformed
+        TablaPuntos mostrarTablaPuntos = new TablaPuntos();
+        mostrarTablaPuntos.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuTablaPuntosActionPerformed
+
+    private void JMenuGranprixMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuGranprixMouseClicked
         granprix mostrargranprix = new granprix();
         mostrargranprix.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_JMenuGranprixMouseClicked
 
     private void jMenuTablaPuntosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuTablaPuntosMouseClicked
-        // TODO add your handling code here:
-        javax.swing.JFrame ventanaTablaDePuntos = new javax.swing.JFrame("Tabla de Puntos");
-        ventanaTablaDePuntos.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        ventanaTablaDePuntos.setContentPane(new TablaDePuntos());
-        ventanaTablaDePuntos.pack();
-        ventanaTablaDePuntos.setLocationRelativeTo(this);
-        ventanaTablaDePuntos.setVisible(true);
+        granprix mostrargranprix = new granprix();
+        mostrargranprix.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuTablaPuntosMouseClicked
 
     private void jMenuPilotosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuPilotosMouseClicked
-        // TODO add your handling code here:
         Pilotos mostrarPilotos = new Pilotos();
         mostrarPilotos.setVisible(true);
         this.setVisible(false);
-
     }//GEN-LAST:event_jMenuPilotosMouseClicked
 
     private void jMenuCircuitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCircuitosMouseClicked
-        // TODO add your handling code here:
         Circuitos mostrarCircuitos = new Circuitos();
         mostrarCircuitos.setVisible(true);
         this.setVisible(false);
-
     }//GEN-LAST:event_jMenuCircuitosMouseClicked
 
     private void jMenuAutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAutosMouseClicked
-        // TODO add your handling code here:
-        
-     
         Autos mostrarAutos = new Autos();
         mostrarAutos.setVisible(true);
         this.setVisible(false);
-        
-        
-
     }//GEN-LAST:event_jMenuAutosMouseClicked
 
     private void jMenuEscuderia1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuEscuderia1MouseClicked
-        // TODO add your handling code here:
         Escuderias mostrarEscuderias = new Escuderias();
         mostrarEscuderias.setVisible(true);
         this.setVisible(false);
-        
-        
     }//GEN-LAST:event_jMenuEscuderia1MouseClicked
-
-   
-    private void jMenuEscuderia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEscuderia1ActionPerformed
-        // TODO add your handling code here:
-      
-   
-
-    }//GEN-LAST:event_jMenuEscuderia1ActionPerformed
-
-    private void jMenuAutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAutosActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-    }//GEN-LAST:event_jMenuAutosActionPerformed
 
     /**
      * @param args the command line arguments
