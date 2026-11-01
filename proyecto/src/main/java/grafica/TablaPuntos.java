@@ -187,7 +187,7 @@ public class TablaPuntos extends javax.swing.JFrame {
 
         if (jTextFieldPosicion.getText().trim().isEmpty() == true || jTextFieldCantidadVueltas.getText().trim().isEmpty() == true || jTextFieldTiempoVueltas.getText().trim().isEmpty() == true || jTextFieldPuntos.getText().trim().isEmpty() == true || jComboBoxPiloto.getItemCount() == 0 || jComboBoxAuto.getItemCount() == 0 || jComboBoxGranprix.getItemCount() == 0) {
             JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
-
+ //
         } else {
 
             try {
