@@ -21,6 +21,7 @@ public class ProveedorIndumentaria extends javax.swing.JFrame {
      */
     public ProveedorIndumentaria() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**
@@ -224,7 +225,7 @@ public class ProveedorIndumentaria extends javax.swing.JFrame {
             return;
         }
         for (String proveedor : proveedores) {
-            String[] datosProveedor = proveedor.split(":", 2);
+            String[] datosProveedor = DatabaseRows.split(proveedor);
             jComboBoxProveedor.addItem(new ForeignKeyOption(datosProveedor[0], datosProveedor[1]));
         }
 
@@ -239,7 +240,7 @@ public class ProveedorIndumentaria extends javax.swing.JFrame {
             return;
         }
         for (String proveedor : proveedorIndumentaria) {
-            String[] datosProveedor = proveedor.split(":", -1);
+            String[] datosProveedor = DatabaseRows.split(proveedor);
             tablaProveedorIndumentaria.addRow(new Object[]{datosProveedor[0], datosProveedor[1]});
         }
     }//GEN-LAST:event_formWindowOpened

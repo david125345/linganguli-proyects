@@ -20,6 +20,7 @@ public class TablaPuntos extends javax.swing.JFrame {
      */
     public TablaPuntos() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**
@@ -243,15 +244,15 @@ public class TablaPuntos extends javax.swing.JFrame {
             return;
         }
         for (String fila : pilotos) {
-            String[] datos = fila.split(":", 3);
+            String[] datos = DatabaseRows.split(fila);
             jComboBoxPiloto.addItem(new ForeignKeyOption(datos[0], datos[1]));
         }
         for (String fila : autos) {
-            String[] datos = fila.split(":", 3);
+            String[] datos = DatabaseRows.split(fila);
             jComboBoxAuto.addItem(new ForeignKeyOption(datos[0], datos[1] + " (" + datos[2] + ")"));
         }
         for (String fila : granprix) {
-            String[] datos = fila.split(":", 2);
+            String[] datos = DatabaseRows.split(fila);
             jComboBoxGranprix.addItem(new ForeignKeyOption(datos[0], datos[1]));
         }
 
@@ -271,7 +272,7 @@ public class TablaPuntos extends javax.swing.JFrame {
             return;
         }
         for (String fila : resultados) {
-            String[] datos = fila.split(":", -1);
+            String[] datos = DatabaseRows.split(fila);
             tabla.addRow(new Object[]{datos[0], datos[1], datos[2], datos[3],
                 datos[4], "null".equals(datos[5]) ? "" : datos[5], datos[6]});
         }

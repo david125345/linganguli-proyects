@@ -17,6 +17,7 @@ public class consultar extends javax.swing.JFrame {
      */
     public consultar() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**

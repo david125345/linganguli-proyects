@@ -14,6 +14,7 @@ public class TemporadasWindow extends javax.swing.JFrame {
 
     public TemporadasWindow() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     private void initComponents() {
@@ -137,7 +138,7 @@ public class TemporadasWindow extends javax.swing.JFrame {
             return;
         }
         for (String season : seasons) {
-            model.addRow(new Object[]{season.replace(":", "")});
+            model.addRow(new Object[]{DatabaseRows.stripTrailingSeparator(season)});
         }
     }
 

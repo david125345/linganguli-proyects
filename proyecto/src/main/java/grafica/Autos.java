@@ -21,6 +21,7 @@ public class Autos extends javax.swing.JFrame {
      */
     public Autos() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**
@@ -225,7 +226,7 @@ public class Autos extends javax.swing.JFrame {
             return;
         }
         for (String escuderia : escuderias) {
-            String[] datosEscuderia = escuderia.split(":", 2);
+            String[] datosEscuderia = DatabaseRows.split(escuderia);
             jComboBoxEscuderia.addItem(new ForeignKeyOption(datosEscuderia[0], datosEscuderia[1]));
         }
 
@@ -240,7 +241,7 @@ public class Autos extends javax.swing.JFrame {
             return;
         }
         for (String auto : autos) {
-            String[] datosAuto = auto.split(":", -1);
+            String[] datosAuto = DatabaseRows.split(auto);
             tablaAutos.addRow(new Object[]{datosAuto[0], datosAuto[1], datosAuto[2]});
         }
     }//GEN-LAST:event_formWindowOpened

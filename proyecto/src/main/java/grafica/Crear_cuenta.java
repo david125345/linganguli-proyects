@@ -21,6 +21,7 @@ public class Crear_cuenta extends javax.swing.JFrame {
      */
     public Crear_cuenta() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**

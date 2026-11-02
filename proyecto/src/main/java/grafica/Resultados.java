@@ -23,6 +23,7 @@ public class Resultados extends javax.swing.JFrame {
     public Resultados() {
         initComponents();
         cargarResultados();
+        WindowLayout.configure(this);
     }
 
     /**
@@ -114,8 +115,8 @@ public class Resultados extends javax.swing.JFrame {
         Map<String, String> tiempos = new HashMap<>();
 
         for (String resultado : resultados) {
-            String[] datos = resultado.split(":", -1);
-            if (datos.length < 7) {
+            String[] datos = DatabaseRows.split(resultado);
+            if (datos.length != 6) {
                 logger.warning("Se omitió una fila de resultados con un formato inesperado.");
                 continue;
             }
@@ -170,21 +171,16 @@ public class Resultados extends javax.swing.JFrame {
             return noEncontrado;
         }
 
-        String fila = filas[0];
-        if (columnas.equals("tiempo")) {
-            String tiempo = fila.endsWith(":") ? fila.substring(0, fila.length() - 1) : fila;
-            if ("null".equals(tiempo)) {
-                tiempo = "";
-            }
-            cache.put(id, tiempo);
-            return tiempo;
+        String fila = DatabaseRows.stripTrailingSeparator(filas[0]);
+        if ("null".equals(fila)) {
+            fila = "";
         }
         cache.put(id, fila);
         return fila;
     }
 
     private String valorLookup(String fila, int indice, String fallback) {
-        String[] columnas = fila.split(":", -1);
+        String[] columnas = DatabaseRows.split(fila);
         if (indice >= columnas.length || columnas[indice].isEmpty()) {
             return fallback;
         }

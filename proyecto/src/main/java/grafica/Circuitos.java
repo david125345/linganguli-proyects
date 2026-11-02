@@ -21,6 +21,7 @@ public class Circuitos extends javax.swing.JFrame {
      */
     public Circuitos() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**
@@ -208,7 +209,7 @@ public class Circuitos extends javax.swing.JFrame {
             return;
         }
         for (String circuito : circuitos) {
-            String[] datosCircuito = circuito.split(":", -1);
+            String[] datosCircuito = DatabaseRows.split(circuito);
             tablaCircuito.addRow(new Object[]{datosCircuito[0], datosCircuito[1], datosCircuito[2], datosCircuito[3]});
         }
     }//GEN-LAST:event_formWindowOpened

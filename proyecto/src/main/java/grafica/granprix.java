@@ -21,6 +21,7 @@ public class granprix extends javax.swing.JFrame {
      */
     public granprix() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**
@@ -220,7 +221,7 @@ public class granprix extends javax.swing.JFrame {
             return;
         }
         for (String temporada : temporadas) {
-            String[] datosTemporada = temporada.split(":", 2);
+            String[] datosTemporada = DatabaseRows.split(temporada);
             jComboBoxTemporada.addItem(new ForeignKeyOption(datosTemporada[0], datosTemporada[1]));
         }
 
@@ -235,7 +236,7 @@ public class granprix extends javax.swing.JFrame {
             return;
         }
         for (String fila : granprix) {
-            String[] datos = fila.split(":", -1);
+            String[] datos = DatabaseRows.split(fila);
             tabla.addRow(new Object[]{datos[0], datos[1], datos[2]});
         }
     }

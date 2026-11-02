@@ -22,6 +22,7 @@ public class Escuderias extends javax.swing.JFrame {
      */
     public Escuderias() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**
@@ -44,6 +45,10 @@ public class Escuderias extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableEscuderia = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jLabelMotor = new javax.swing.JLabel();
+        jLabelChasis = new javax.swing.JLabel();
+        jComboBoxMotor = new javax.swing.JComboBox<>();
+        jTextFieldChasis = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,7 +98,7 @@ public class Escuderias extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre"
+                "Escudería", "Motor", "Nro. chasis"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -118,22 +123,30 @@ public class Escuderias extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(227, 227, 227)
-                        .addComponent(jButtonAtras)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButtonAceptar)
-                        .addGap(0, 52, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(111, 111, 111)
-                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(204, 204, 204))
+                        .addGap(60, 60, 60)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMotor)
+                            .addComponent(jLabelChasis))
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxMotor, 0, 250, Short.MAX_VALUE)
+                            .addComponent(jTextFieldChasis)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(310, 310, 310)
+                        .addComponent(jButtonAtras)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButtonAceptar)))
+                .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -141,19 +154,38 @@ public class Escuderias extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(51, 51, 51)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(46, 46, 46)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelMotor)
+                    .addComponent(jComboBoxMotor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelChasis)
+                    .addComponent(jTextFieldChasis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar)
                     .addComponent(jButtonAtras))
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        jLabelMotor.setText("Proveedor de motor");
+        jLabelChasis.setText("Número de chasis");
+        jTableEscuderia.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{"Escudería", "Motor", "Nro. chasis"}
+        ) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        });
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,50 +202,95 @@ public class Escuderias extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        // TODO add your handling code here:
-        if (jTextFieldNombre.getText().trim().isEmpty() == true) {
-
-            JOptionPane.showMessageDialog(this, "Debes completar todos los campos");
-
-        } else {
-
-            try {
-                String nombre = jTextFieldNombre.getText();
-                String valor = "'" + nombre + "'";
-
-                F1app f1 = F1app.getInstance();
-                f1.Insertintodatabase("escuderia", "nombre", valor);
-
-                DefaultTableModel tabla = (DefaultTableModel) jTableEscuderia.getModel();
-                tabla.addRow(new Object[]{nombre});
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Inserte valores validos");
-            }
-
+        String nombre = jTextFieldNombre.getText().trim();
+        String chasis = jTextFieldChasis.getText().trim();
+        ForeignKeyOption motor = (ForeignKeyOption) jComboBoxMotor.getSelectedItem();
+        if (nombre.isEmpty() || chasis.isEmpty() || motor == null) {
+            JOptionPane.showMessageDialog(this, "Completa el nombre, el proveedor de motor y el número de chasis.");
+            return;
         }
 
+        F1app f1 = F1app.getInstance();
+        String nombreSql = nombre.replace("'", "''");
+        String chasisSql = chasis.replace("'", "''");
+        String[] existente = f1.Consultardatabase(
+                "ID_escuderia", "ESCUDERIA WHERE nombre = '" + nombreSql + "'");
+        if (existente == null) {
+            JOptionPane.showMessageDialog(this, "No se pudo verificar si la escudería ya existe.");
+            return;
+        }
+        if (existente.length > 0) {
+            JOptionPane.showMessageDialog(this, "Ya existe una escudería con ese nombre.");
+            return;
+        }
+
+        f1.Insertintodatabase("ESCUDERIA", "nombre", "'" + nombreSql + "'");
+        String[] escuderiaId = f1.Consultardatabase(
+                "ID_escuderia",
+                "ESCUDERIA WHERE nombre = '" + nombreSql + "' ORDER BY ID_escuderia DESC LIMIT 1");
+        if (escuderiaId == null || escuderiaId.length == 0) {
+            JOptionPane.showMessageDialog(this, "No se pudo guardar la escudería.");
+            return;
+        }
+        String id = DatabaseRows.stripTrailingSeparator(escuderiaId[0]);
+        f1.Insertintodatabase("SUMINISTRA", "ID_proveedor,ID_escuderia,nro_chasis",
+                "'" + motor.getId() + "','" + id + "','" + chasisSql + "'");
+
+        String[] suministro = f1.Consultardatabase(
+                "ID_escuderia",
+                "SUMINISTRA WHERE ID_proveedor = " + motor.getId() + " AND ID_escuderia = " + id);
+        if (suministro == null || suministro.length == 0) {
+            JOptionPane.showMessageDialog(this,
+                    "La escudería se guardó, pero no se pudo asociar su motor y chasis.");
+            cargarEscuderias();
+            return;
+        }
+
+        cargarEscuderias();
+        jTextFieldNombre.setText("");
+        jTextFieldChasis.setText("");
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-        F1app f1 = F1app.getInstance();
-        DefaultTableModel tablaEscuderias = (DefaultTableModel) jTableEscuderia.getModel();
-        tablaEscuderias.setRowCount(0);
+        cargarProveedoresMotor();
+        cargarEscuderias();
 
-        String[] escuderias = f1.Consultardatabase(
-                "nombre",
-                "escuderia");
+    }//GEN-LAST:event_formWindowOpened
+
+    private void cargarProveedoresMotor() {
+        jComboBoxMotor.removeAllItems();
+        String[] motores = F1app.getInstance().Consultardatabase(
+                "ID_proveedores,nombre", "PROV_MOTORES ORDER BY nombre");
+        if (motores == null) {
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los proveedores de motores.");
+            return;
+        }
+        for (String motor : motores) {
+            String[] datos = DatabaseRows.split(motor);
+            jComboBoxMotor.addItem(new ForeignKeyOption(datos[0], datos[1]));
+        }
+    }
+
+    private void cargarEscuderias() {
+        DefaultTableModel model = (DefaultTableModel) jTableEscuderia.getModel();
+        model.setRowCount(0);
+        String[] escuderias = F1app.getInstance().Consultardatabase(
+                "nombre,motor,chasis",
+                "(SELECT e.nombre AS nombre, COALESCE(pm.nombre,'') AS motor, "
+                + "COALESCE(s.nro_chasis,'') AS chasis, e.ID_escuderia AS ID_escuderia "
+                + "FROM ESCUDERIA e LEFT JOIN SUMINISTRA s ON e.ID_escuderia = s.ID_escuderia "
+                + "LEFT JOIN PROV_MOTORES pm ON s.ID_proveedor = pm.ID_proveedores) "
+                + "AS escuderias ORDER BY ID_escuderia");
         if (escuderias == null) {
             JOptionPane.showMessageDialog(this, "No se pudieron cargar las escuderías.");
             return;
         }
         for (String escuderia : escuderias) {
-            String[] datosEscuderias = escuderia.split(":", -1);
-            tablaEscuderias.addRow(new Object[]{datosEscuderias[0]});
+            String[] datos = DatabaseRows.split(escuderia);
+            model.addRow(new Object[]{datos[0], datos[1], datos[2]});
         }
-
-
-    }//GEN-LAST:event_formWindowOpened
+    }
 
     /**
      * @param args the command line arguments
@@ -227,12 +304,16 @@ public class Escuderias extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelMotor;
+    private javax.swing.JLabel jLabelChasis;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableEscuderia;
+    private javax.swing.JComboBox<ForeignKeyOption> jComboBoxMotor;
+    private javax.swing.JTextField jTextFieldChasis;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }

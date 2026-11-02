@@ -16,6 +16,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
      */
     public VentanaOpciones() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**
@@ -38,6 +39,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jMenuAutos = new javax.swing.JMenu();
         jMenuEscuderia1 = new javax.swing.JMenu();
         jMenuProveedorIndumentaria = new javax.swing.JMenu();
+        jMenuProveedorMotores = new javax.swing.JMenu();
         jMenuTemporadas = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -112,6 +114,14 @@ public class VentanaOpciones extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenuProveedorIndumentaria);
+
+        jMenuProveedorMotores.setText("Proveedores de motores");
+        jMenuProveedorMotores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuProveedorMotoresMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenuProveedorMotores);
 
         jMenuTemporadas.setText("Temporadas");
         jMenuTemporadas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -221,6 +231,11 @@ public class VentanaOpciones extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
+    private void jMenuProveedorMotoresMouseClicked(java.awt.event.MouseEvent evt) {
+        new ProveedorMotores().setVisible(true);
+        this.setVisible(false);
+    }
+
     private void jMenuTemporadasMouseClicked(java.awt.event.MouseEvent evt) {
         new TemporadasWindow().setVisible(true);
         this.setVisible(false);
@@ -263,6 +278,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jMenuPilotos;
     private javax.swing.JMenu jMenuProveedorIndumentaria;
+    private javax.swing.JMenu jMenuProveedorMotores;
     private javax.swing.JMenu jMenuTemporadas;
     private javax.swing.JMenu jMenuTablaPuntos;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;

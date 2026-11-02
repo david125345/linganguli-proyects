@@ -22,6 +22,7 @@ public class Pilotos extends javax.swing.JFrame {
      */
     public Pilotos() {
         initComponents();
+        WindowLayout.configure(this);
     }
 
     /**
@@ -239,7 +240,7 @@ public class Pilotos extends javax.swing.JFrame {
             return;
         }
         for (String proveedor : proveedores) {
-            String[] datosProveedor = proveedor.split(":", 2);
+            String[] datosProveedor = DatabaseRows.split(proveedor);
             jComboBox1.addItem(new ForeignKeyOption(datosProveedor[0], datosProveedor[1]));
         }
 
@@ -255,7 +256,7 @@ public class Pilotos extends javax.swing.JFrame {
             return;
         }
         for (String pilot : piloto) {
-            String[] datosPiloto = pilot.split(":", -1);
+            String[] datosPiloto = DatabaseRows.split(pilot);
             tablaPilotos.addRow(new Object[]{datosPiloto[0], datosPiloto[1], datosPiloto[2],
                 datosPiloto.length > 3 && !datosPiloto[3].equals("null") ? datosPiloto[3] : ""});
         }
