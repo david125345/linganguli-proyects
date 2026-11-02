@@ -55,7 +55,6 @@ public class Pilotos extends javax.swing.JFrame {
         setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
-        setPreferredSize(new java.awt.Dimension(700, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(700, 500));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -78,11 +77,11 @@ public class Pilotos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Nacionalidad", "Fecha de Nacimiento", "Proveedor indumentaria"
+                "Nombre", "Nacionalidad", "Fecha de Nacimiento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -241,7 +240,7 @@ public class Pilotos extends javax.swing.JFrame {
         }
         for (String proveedor : proveedores) {
             String[] datosProveedor = DatabaseRows.split(proveedor);
-            jComboBox1.addItem(new ForeignKeyOption(datosProveedor[0], datosProveedor[1]));
+            jComboBox1.addItem(new ForeignKeyOption(datosProveedor[0], datosProveedor[1]).toString());
         }
 
         String[] piloto = f1.Consultardatabase(
@@ -306,7 +305,7 @@ public class Pilotos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar1;
     private javax.swing.JButton jButtonAtras2;
-    private javax.swing.JComboBox<ForeignKeyOption> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

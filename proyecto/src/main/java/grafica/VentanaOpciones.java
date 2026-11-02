@@ -38,9 +38,6 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jMenuCircuitos = new javax.swing.JMenu();
         jMenuAutos = new javax.swing.JMenu();
         jMenuEscuderia1 = new javax.swing.JMenu();
-        jMenuProveedorIndumentaria = new javax.swing.JMenu();
-        jMenuProveedorMotores = new javax.swing.JMenu();
-        jMenuTemporadas = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -107,41 +104,17 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jMenuEscuderia1.addActionListener(this::jMenuEscuderia1ActionPerformed);
         jMenuBar1.add(jMenuEscuderia1);
 
-        jMenuProveedorIndumentaria.setText("Proveedores de indumentaria");
-        jMenuProveedorIndumentaria.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuProveedorIndumentariaMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenuProveedorIndumentaria);
-
-        jMenuProveedorMotores.setText("Proveedores de motores");
-        jMenuProveedorMotores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuProveedorMotoresMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenuProveedorMotores);
-
-        jMenuTemporadas.setText("Temporadas");
-        jMenuTemporadas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuTemporadasMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenuTemporadas);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
+            .addGap(0, 712, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
+            .addGap(0, 481, Short.MAX_VALUE)
         );
 
         pack();
@@ -277,9 +250,6 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jMenuPilotos;
-    private javax.swing.JMenu jMenuProveedorIndumentaria;
-    private javax.swing.JMenu jMenuProveedorMotores;
-    private javax.swing.JMenu jMenuTemporadas;
     private javax.swing.JMenu jMenuTablaPuntos;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     // End of variables declaration//GEN-END:variables

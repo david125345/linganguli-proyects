@@ -120,8 +120,8 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Inicio de sesion fallido, compruebe el usuario o la contraseña");
                 break;
             case 1:
-                Resultados mostrarResultados = new Resultados();
-                mostrarResultados.setVisible(true);
+                Resultado mostrarResultado = new Resultado();
+                mostrarResultado.setVisible(true);
                 this.setVisible(false);
                 break;
             case 2:
