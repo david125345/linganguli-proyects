@@ -4,6 +4,10 @@
  */
 package grafica;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import logica.F1app;
+
 /**
  *
  * @author dasangu
@@ -17,6 +21,40 @@ public class Resultado extends javax.swing.JFrame {
      */
     public Resultado() {
         initComponents();
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent event) {
+                cargarResultados();
+            }
+        });
+    }
+
+    private void cargarResultados() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        String[] resultados = F1app.getInstance().Consultardatabase(
+                "piloto,auto,granprix,posicion,cant_vueltas,puntos",
+                "(SELECT p.nombre AS piloto, a.modelo AS auto, gp.nombre AS granprix, "
+                + "r.`posición` AS posicion, r.cant_vueltas AS cant_vueltas, "
+                + "r.puntos AS puntos, r.ID_gp AS ID_gp "
+                + "FROM RESULTADO r "
+                + "INNER JOIN PILOTO p ON r.ID_piloto = p.ID_piloto "
+                + "INNER JOIN AUTO a ON r.ID_auto = a.ID_auto "
+                + "INNER JOIN GRANDPRIX gp ON r.ID_gp = gp.ID_gp) AS resultados "
+                + "ORDER BY ID_gp, posicion");
+        if (resultados == null) {
+            logger.severe("No se pudieron cargar los resultados.");
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los resultados.");
+            return;
+        }
+
+        for (String fila : resultados) {
+            String[] datos = DatabaseRows.split(fila);
+            if (datos.length == 6) {
+                model.addRow(datos);
+            }
+        }
     }
 
     /**
