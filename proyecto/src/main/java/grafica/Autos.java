@@ -48,7 +48,6 @@ public class Autos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
-        setPreferredSize(new java.awt.Dimension(700, 500));
         setSize(new java.awt.Dimension(700, 500));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -227,7 +226,7 @@ public class Autos extends javax.swing.JFrame {
         }
         for (String escuderia : escuderias) {
             String[] datosEscuderia = DatabaseRows.split(escuderia);
-            jComboBoxEscuderia.addItem(new ForeignKeyOption(datosEscuderia[0], datosEscuderia[1]));
+            jComboBoxEscuderia.addItem(new ForeignKeyOption(datosEscuderia[0], datosEscuderia[1]).toString());
         }
 
         String[] autos = f1.Consultardatabase(
@@ -275,7 +274,7 @@ public class Autos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar1;
     private javax.swing.JButton jButtonAtras2;
-    private javax.swing.JComboBox<ForeignKeyOption> jComboBoxEscuderia;
+    private javax.swing.JComboBox<String> jComboBoxEscuderia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

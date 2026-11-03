@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package grafica;
+
 /**
  *
  * @author dasangu
@@ -38,6 +39,9 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jMenuCircuitos = new javax.swing.JMenu();
         jMenuAutos = new javax.swing.JMenu();
         jMenuEscuderia1 = new javax.swing.JMenu();
+        jMenuProveedorIndumentaria = new javax.swing.JMenu();
+        jMenuProveedorMotores = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -104,6 +108,30 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jMenuEscuderia1.addActionListener(this::jMenuEscuderia1ActionPerformed);
         jMenuBar1.add(jMenuEscuderia1);
 
+        jMenuProveedorIndumentaria.setText("Proveedor indumentaria");
+        jMenuProveedorIndumentaria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuProveedorIndumentariaMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenuProveedorIndumentaria);
+
+        jMenuProveedorMotores.setText("Proveedor motores");
+        jMenuProveedorMotores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuProveedorMotoresMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenuProveedorMotores);
+
+        jMenu1.setText("Temporadas");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,18 +148,14 @@ public class VentanaOpciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
-    
-    
-    
-    
+
     private void JMenuGranprixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuGranprixActionPerformed
         granprix mostrargranprix = new granprix();
         mostrargranprix.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_JMenuGranprixActionPerformed
 
-   
+
     private void jMenuEscuderia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEscuderia1ActionPerformed
         Escuderias mostrarEscuderias = new Escuderias();
         mostrarEscuderias.setVisible(true);
@@ -198,21 +222,25 @@ public class VentanaOpciones extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jMenuEscuderia1MouseClicked
 
-    private void jMenuProveedorIndumentariaMouseClicked(java.awt.event.MouseEvent evt) {
+    private void jMenuProveedorIndumentariaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuProveedorIndumentariaMouseClicked
+        // TODO add your handling code here:
         ProveedorIndumentaria mostrarProveedorIndumentaria = new ProveedorIndumentaria();
         mostrarProveedorIndumentaria.setVisible(true);
         this.setVisible(false);
-    }
 
-    private void jMenuProveedorMotoresMouseClicked(java.awt.event.MouseEvent evt) {
+    }//GEN-LAST:event_jMenuProveedorIndumentariaMouseClicked
+
+    private void jMenuProveedorMotoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuProveedorMotoresMouseClicked
+        // TODO add your handling code here:
         new ProveedorMotores().setVisible(true);
         this.setVisible(false);
-    }
+    }//GEN-LAST:event_jMenuProveedorMotoresMouseClicked
 
-    private void jMenuTemporadasMouseClicked(java.awt.event.MouseEvent evt) {
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
         new TemporadasWindow().setVisible(true);
         this.setVisible(false);
-    }
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,10 +267,10 @@ public class VentanaOpciones extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new VentanaOpciones().setVisible(true));
     }
 
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JMenuGranprix;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuAutos;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCircuitos;
@@ -250,6 +278,8 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jMenuPilotos;
+    private javax.swing.JMenu jMenuProveedorIndumentaria;
+    private javax.swing.JMenu jMenuProveedorMotores;
     private javax.swing.JMenu jMenuTablaPuntos;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     // End of variables declaration//GEN-END:variables
